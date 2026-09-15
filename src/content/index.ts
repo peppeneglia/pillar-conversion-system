@@ -31,5 +31,6 @@ export {
   sectionTitles,
   trustBar,
 } from "./shared";
+export { documentContent } from "./document";
 export { testimonials } from "./testimonials";
 export type * from "./types";

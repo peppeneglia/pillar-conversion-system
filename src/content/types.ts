@@ -147,3 +147,61 @@ export type StageContent<S extends Stage = Stage> = {
     privacyNote: string;
   };
 };
+
+export type DocumentStat = {
+  channel: string;
+  value: string;
+  label: string;
+};
+
+export type DocumentStage = {
+  stage: Stage;
+  name: string;
+  reader: string;
+};
+
+export type MeasurementRow = {
+  question: string;
+  metric: string;
+  events: string[];
+};
+
+/** Copy for the explanatory document served at `/`. */
+export type DocumentContent = {
+  meta: {
+    title: string;
+    description: string;
+  };
+  eyebrow: string;
+  title: string;
+  lede: string;
+  traffic: {
+    title: string;
+    body: string;
+    stats: DocumentStat[];
+    note: string;
+  };
+  stages: {
+    title: string;
+    criterion: string;
+    items: DocumentStage[];
+  };
+  problem: {
+    title: string;
+    paragraphs: string[];
+  };
+  landings: {
+    title: string;
+    body: string;
+    promiseLabel: string;
+    linkLabel: string;
+  };
+  measurement: {
+    title: string;
+    body: string;
+    metricLabel: string;
+    eventsLabel: string;
+    rows: MeasurementRow[];
+    note: string;
+  };
+};
