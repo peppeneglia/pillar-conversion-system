@@ -8,12 +8,19 @@ export type CtaConfig = {
   target: CtaTarget;
 };
 
-/** Rendered without photos: the avatar shows the initials of `name`. */
+export type Person = {
+  name: string;
+  role: string;
+};
+
+/**
+ * Rendered without photos: each person gets an avatar with their own initials,
+ * so a testimonial with two people shows two avatars side by side.
+ */
 export type Testimonial = {
   id: string;
   quote: string;
-  name: string;
-  role: string;
+  people: Person[];
   company: string;
   stages: Stage[];
 };
