@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { Button, type ButtonVariant } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { Field } from "@/components/ui/Field";
+import { Section, type SectionBackground } from "@/components/ui/Section";
 
-// Temporary page to verify design tokens on screen. Replace with the real document.
+// Temporary page to verify design tokens and primitives on screen. Replace with the real document.
 
 type Swatch = {
   token: string;
@@ -11,6 +15,14 @@ type Swatch = {
 type TypeSample = {
   className: string;
   sizes: string;
+};
+
+type PreviewState = "hover" | "focus" | "active";
+
+type StateSample = {
+  label: string;
+  state?: PreviewState;
+  disabled?: boolean;
 };
 
 const brandColors: Swatch[] = [
@@ -53,6 +65,18 @@ const typeScale: TypeSample[] = [
   { className: "label-small", sizes: "12, tracking .05em" },
 ];
 
+const interactiveStates: StateSample[] = [
+  { label: "Default" },
+  { label: "Hover", state: "hover" },
+  { label: "Focus da tastiera", state: "focus" },
+  { label: "Active", state: "active" },
+  { label: "Disabled", disabled: true },
+];
+
+const buttonVariants: ButtonVariant[] = ["primary", "secondary"];
+
+const sectionBackgrounds: SectionBackground[] = ["background", "card", "muted"];
+
 function SwatchGrid({ title, swatches }: { title: string; swatches: Swatch[] }) {
   return (
     <section className="flex flex-col gap-4">
@@ -75,11 +99,15 @@ function SwatchGrid({ title, swatches }: { title: string; swatches: Swatch[] }) 
   );
 }
 
+function StateCaption({ children }: { children: string }) {
+  return <span className="label-small uppercase text-muted-foreground">{children}</span>;
+}
+
 export default function Home() {
   return (
     <>
       <header className="border-b border-border bg-card">
-        <div className="mx-auto flex w-full max-w-container items-center px-4 py-4 md:px-8">
+        <Container className="flex items-center py-4">
           <Image
             src="/logo.svg"
             alt="Logo Pillar"
@@ -87,67 +115,237 @@ export default function Home() {
             height={40}
             priority
           />
-        </div>
+        </Container>
       </header>
 
-      <main className="mx-auto flex w-full max-w-container flex-1 flex-col gap-12 px-4 py-10 md:px-8 md:py-16">
-        <div className="flex flex-col gap-4">
-          <p className="label-small uppercase text-muted-foreground">
-            Pagina temporanea
-          </p>
-          <h1 className="h1-huge bg-(image:--gradient-text-hero) bg-clip-text font-bold text-transparent">
-            Design tokens
-          </h1>
-          <div className="h-1 w-full rounded-full bg-(image:--gradient-separator)" />
-        </div>
+      <main className="flex flex-1 flex-col">
+        <Container className="flex flex-col gap-12 py-10 md:py-16">
+          <div className="flex flex-col gap-4">
+            <p className="label-small uppercase text-muted-foreground">
+              Pagina temporanea
+            </p>
+            <h1 className="h1-huge bg-(image:--gradient-text-hero) bg-clip-text font-bold text-transparent">
+              Design tokens
+            </h1>
+            <div className="h-1 w-full rounded-full bg-(image:--gradient-separator)" />
+            <Button href="#primitive" variant="secondary" className="self-start">
+              Vai alle primitive
+            </Button>
+          </div>
 
-        <SwatchGrid title="Colori di brand" swatches={brandColors} />
-        <SwatchGrid title="Colori semantici" swatches={semanticColors} />
+          <SwatchGrid title="Colori di brand" swatches={brandColors} />
+          <SwatchGrid title="Colori semantici" swatches={semanticColors} />
 
-        <section className="flex flex-col gap-4">
-          <h2 className="h3 font-semibold">Gradienti</h2>
-          <ul className="grid gap-4 md:grid-cols-2">
-            <li className="flex flex-col gap-2">
-              <div className="h-20 rounded-lg bg-(image:--gradient-text-hero)" />
-              <span className="label-medium">--gradient-text-hero</span>
-            </li>
-            <li className="flex flex-col gap-2">
-              <div className="h-20 rounded-lg bg-(image:--gradient-separator)" />
-              <span className="label-medium">--gradient-separator</span>
-            </li>
-          </ul>
-        </section>
-
-        <section className="flex flex-col gap-4">
-          <h2 className="h3 font-semibold">Scala tipografica</h2>
-          <ul className="flex flex-col divide-y divide-border rounded-lg border border-border bg-card">
-            {typeScale.map((sample) => (
-              <li
-                key={sample.className}
-                className="flex flex-col gap-2 p-4 md:flex-row md:items-baseline md:justify-between md:gap-8"
-              >
-                <p className={sample.className}>Space Grotesk, conversione</p>
-                <span className="label-small shrink-0 text-muted-foreground">
-                  .{sample.className} · {sample.sizes}
-                </span>
+          <section className="flex flex-col gap-4">
+            <h2 className="h3 font-semibold">Gradienti</h2>
+            <ul className="grid gap-4 md:grid-cols-2">
+              <li className="flex flex-col gap-2">
+                <div className="h-20 rounded-lg bg-(image:--gradient-text-hero)" />
+                <span className="label-medium">--gradient-text-hero</span>
               </li>
-            ))}
-          </ul>
-          <ul className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4">
-            <li className="font-normal">Peso 400</li>
-            <li className="font-medium">Peso 500</li>
-            <li className="font-semibold">Peso 600</li>
-            <li className="font-bold">Peso 700</li>
-          </ul>
-        </section>
+              <li className="flex flex-col gap-2">
+                <div className="h-20 rounded-lg bg-(image:--gradient-separator)" />
+                <span className="label-medium">--gradient-separator</span>
+              </li>
+            </ul>
+          </section>
+
+          <section className="flex flex-col gap-4">
+            <h2 className="h3 font-semibold">Scala tipografica</h2>
+            <ul className="flex flex-col divide-y divide-border rounded-lg border border-border bg-card">
+              {typeScale.map((sample) => (
+                <li
+                  key={sample.className}
+                  className="flex flex-col gap-2 p-4 md:flex-row md:items-baseline md:justify-between md:gap-8"
+                >
+                  <p className={sample.className}>Space Grotesk, conversione</p>
+                  <span className="label-small shrink-0 text-muted-foreground">
+                    .{sample.className} · {sample.sizes}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <ul className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4">
+              <li className="font-normal">Peso 400</li>
+              <li className="font-medium">Peso 500</li>
+              <li className="font-semibold">Peso 600</li>
+              <li className="font-bold">Peso 700</li>
+            </ul>
+          </section>
+        </Container>
+
+        <Section id="primitive" background="muted" aria-labelledby="primitive-title">
+          <Container className="flex flex-col gap-12">
+            <div className="flex flex-col gap-2">
+              <h2 id="primitive-title" className="h2 font-bold">
+                Primitive
+              </h2>
+              <p className="text-muted-foreground">
+                Gli stati hover, focus e active sono forzati per l’anteprima. Gli
+                esempi “dal vivo” rispondono a mouse e tastiera: usa Tab per vedere il
+                focus reale.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              <h3 className="h3 font-semibold">Button</h3>
+              {buttonVariants.map((variant) => (
+                <div key={variant} className="flex flex-col gap-3">
+                  <h4 className="h4 font-medium">{variant}</h4>
+                  <ul className="flex flex-wrap gap-6">
+                    {interactiveStates.map((sample) => (
+                      <li key={sample.label} className="flex flex-col items-start gap-2">
+                        <StateCaption>{sample.label}</StateCaption>
+                        <Button
+                          variant={variant}
+                          data-state={sample.state}
+                          disabled={sample.disabled}
+                          tabIndex={sample.state ? -1 : undefined}
+                        >
+                          Richiedi una demo
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+
+              <div className="flex flex-col gap-3">
+                <h4 className="h4 font-medium">Dal vivo e come link</h4>
+                <ul className="flex flex-wrap gap-6">
+                  <li className="flex flex-col items-start gap-2">
+                    <StateCaption>button</StateCaption>
+                    <Button>Pulsante</Button>
+                  </li>
+                  <li className="flex flex-col items-start gap-2">
+                    <StateCaption>link interno</StateCaption>
+                    <Button href="/" variant="secondary">
+                      Torna all’inizio
+                    </Button>
+                  </li>
+                  <li className="flex flex-col items-start gap-2">
+                    <StateCaption>ancora</StateCaption>
+                    <Button href="#primitive-field" variant="secondary">
+                      Vai al campo
+                    </Button>
+                  </li>
+                  <li className="flex flex-col items-start gap-2">
+                    <StateCaption>link esterno</StateCaption>
+                    <Button href="https://example.com">Sito esterno</Button>
+                  </li>
+                  <li className="flex flex-col items-start gap-2">
+                    <StateCaption>link disabled</StateCaption>
+                    <Button href="https://example.com" disabled>
+                      Link non disponibile
+                    </Button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              <h3 id="primitive-field" className="h3 scroll-mt-6 font-semibold">
+                Field
+              </h3>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <Field label="Nome (default)" name="demo-default" placeholder="Il tuo nome" />
+                <Field
+                  label="Nome (hover)"
+                  name="demo-hover"
+                  placeholder="Il tuo nome"
+                  data-state="hover"
+                />
+                <Field
+                  label="Nome (focus da tastiera)"
+                  name="demo-focus"
+                  placeholder="Il tuo nome"
+                  data-state="focus"
+                />
+                <Field
+                  label="Telefono (active)"
+                  name="demo-active"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="Numero di telefono"
+                  data-state="active"
+                />
+                <Field
+                  label="Email (errore)"
+                  name="demo-error"
+                  type="email"
+                  defaultValue="nome@"
+                  required
+                  error="Inserisci un indirizzo email valido."
+                />
+                <Field
+                  label="Email (errore con focus)"
+                  name="demo-error-focus"
+                  type="email"
+                  defaultValue="nome@"
+                  error="Inserisci un indirizzo email valido."
+                  data-state="focus"
+                />
+                <Field
+                  label="Nome (disabled)"
+                  name="demo-disabled"
+                  placeholder="Il tuo nome"
+                  disabled
+                />
+                <Field
+                  label="Email (dal vivo)"
+                  name="demo-live"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="nome@azienda.it"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              <h3 className="h3 font-semibold">Section</h3>
+              <div className="flex flex-col overflow-hidden rounded-lg border border-border">
+                {sectionBackgrounds.map((background) => (
+                  <Section
+                    key={background}
+                    background={background}
+                    aria-labelledby={`section-demo-${background}`}
+                  >
+                    <Container>
+                      <h4 id={`section-demo-${background}`} className="h4 font-medium">
+                        background=&quot;{background}&quot;
+                      </h4>
+                      <p className="text-muted-foreground">py-16 → md:py-24</p>
+                    </Container>
+                  </Section>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <h3 className="h3 font-semibold">Container</h3>
+              <p className="text-muted-foreground">
+                Contenuto largo al massimo 1260px, padding laterale minimo 1.25rem.
+              </p>
+            </div>
+          </Container>
+
+          <div className="mt-6 border-y border-dashed border-medium-gray bg-card">
+            <Container>
+              <div className="border-x border-dashed border-tropical-indigo bg-tropical-indigo/10 py-6 text-center">
+                <span className="label-medium">area contenuto</span>
+              </div>
+            </Container>
+          </div>
+        </Section>
       </main>
 
       <footer className="border-t border-border">
-        <div className="mx-auto w-full max-w-container px-4 py-6 md:px-8">
+        <Container className="py-6">
           <p className="label-small text-muted-foreground">
             Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.
           </p>
-        </div>
+        </Container>
       </footer>
     </>
   );
