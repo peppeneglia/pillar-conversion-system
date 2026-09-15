@@ -1,74 +1,82 @@
-import { trustBar } from "../shared";
+import { privacyNote, trustBar } from "../shared";
 import type { StageContent } from "../types";
 
 export const operativo: StageContent<"operativo"> = {
   stage: "operativo",
   meta: {
-    title: "[TODO: meta title della landing per chi vuole ridurre il lavoro operativo]",
+    title: "Bolle, rapportini e ore di cantiere — Pillar",
     description:
-      "[TODO: meta description di circa 150 caratteri sui tempi delle attività operative]",
+      "Una foto su WhatsApp e la bolla è archiviata. Un vocale e il rapportino è scritto. Senza app da installare.",
   },
   hero: {
-    eyebrow: "[TODO: eyebrow che identifica chi perde tempo in attività manuali]",
-    headline: "[TODO: headline sul tempo speso in attività operative ripetitive]",
-    headlineAccent: "[TODO: parte finale della headline, resa con il gradiente]",
-    subheadline: "[TODO: subheadline che spiega come Pillar accorcia i processi operativi]",
+    eyebrow: "Bolle, rapportini e ore",
+    headline: "Le bolle le raccogli tu.",
+    headlineAccent: "Trascriverle non è il tuo lavoro.",
+    subheadline:
+      "Una foto su WhatsApp e la bolla è archiviata nel cantiere giusto. Un vocale e il rapportino è scritto. Nessuna app da installare, per nessuno.",
+    // CTAs are intentionally inverted compared to valutazione: this reader does
+    // not make the purchase decision. Do not align them.
     primaryCta: {
-      label: "[TODO: etichetta della CTA principale verso il form]",
-      target: "#form",
-    },
-    secondaryCta: {
-      label: "[TODO: etichetta della CTA secondaria verso il confronto prima/dopo]",
+      label: "Vedi come funziona",
       target: "#prima-dopo",
     },
-    proofLine:
-      "[TODO: riga di prova sociale che richiama B.C. Servizi, da 1-2 giorni a 30 minuti]",
+    secondaryCta: {
+      label: "Prenota una demo",
+      target: "#form",
+    },
+    proofLine: "Oltre 700 imprese edili lo usano ogni giorno",
   },
   trustBar,
   beforeAfter: {
-    title: "[TODO: titolo del confronto prima/dopo sulle attività operative]",
+    title: "Una giornata, prima e dopo",
     rows: [
       {
-        before: "[TODO: attività operativa prima, primo processo]",
-        after: "[TODO: stessa attività dopo, senza numeri non verificati]",
+        before: "Le bolle restano nel furgone e arrivano tutte a fine mese",
+        after: "Foto dal cantiere, archiviata subito nella commessa giusta",
       },
       {
-        before: "[TODO: attività operativa prima, secondo processo]",
-        after: "[TODO: stessa attività dopo, senza numeri non verificati]",
+        before: "Le ore te le fai dire e le ricopi la sera",
+        after: "Vocale su WhatsApp, rapportino strutturato in automatico",
       },
       {
-        before: "[TODO: attività operativa prima, terzo processo]",
-        after: "[TODO: stessa attività dopo, senza numeri non verificati]",
+        before: "L'ufficio ti chiama dieci volte per sapere a che punto sei",
+        after: "Chi è in cantiere e cosa ha fatto si vede senza chiamare",
       },
     ],
   },
   audience: {
-    title: "[TODO: titolo della sezione a chi è rivolta la landing operativo]",
-    body: "[TODO: paragrafo che descrive l'azienda rallentata da processi manuali]",
+    title: "Chi ricopia bolle la sera non è chi ha comprato il gestionale",
+    body: "Il tempo che si perde tra cantiere e ufficio non compare in nessun preventivo. Ma è quello che ti porti a casa.",
     bullets: [
-      "[TODO: primo sintomo di un carico operativo eccessivo]",
-      "[TODO: secondo sintomo di un carico operativo eccessivo]",
-      "[TODO: terzo sintomo di un carico operativo eccessivo]",
+      "Bolle e DDT che non si perdono",
+      "Ore misurate invece che stimate",
+      "Documenti di cantiere sempre dove servono",
     ],
+  },
+  team: {
+    title: "E i tuoi operai?",
+    body: "Non devono installare niente, non devono imparare niente, non devono registrarsi. Mandano una foto o un vocale su WhatsApp, come già fanno.",
   },
   faq: [
     {
-      question: "[TODO: prima domanda frequente sull'avvio operativo]",
-      answer: "[TODO: risposta alla prima domanda]",
+      question: "Gli operai devono installare un'app?",
+      answer: "No. Usano WhatsApp, quello che hanno già sul telefono.",
     },
     {
-      question: "[TODO: seconda domanda frequente sull'avvio operativo]",
-      answer: "[TODO: risposta alla seconda domanda]",
+      question: "Serve formazione?",
+      answer:
+        "La configurazione si fa insieme e in poche ore si è operativi, con affiancamento nelle prime settimane.",
     },
     {
-      question: "[TODO: terza domanda frequente sull'avvio operativo]",
-      answer: "[TODO: risposta alla terza domanda]",
+      question: "Ognuno vede tutto?",
+      answer:
+        "No. Titolare, ufficio, capocantiere e operai hanno accessi diversi: ognuno vede quello che gli serve.",
     },
   ],
   form: {
-    title: "[TODO: titolo del form per la landing operativo]",
-    subtitle: "[TODO: sottotitolo che chiarisce cosa succede dopo l'invio]",
-    submitLabel: "[TODO: etichetta del pulsante di invio]",
-    privacyNote: "[TODO: nota privacy sul trattamento dei dati del form]",
+    title: "Fai vedere Pillar a chi decide",
+    subtitle: "30 minuti in videochiamata. Puoi esserci anche tu.",
+    submitLabel: "Prenota la demo",
+    privacyNote,
   },
 };
