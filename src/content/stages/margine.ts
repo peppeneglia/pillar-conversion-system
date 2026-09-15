@@ -1,4 +1,4 @@
-import { trustBar } from "../shared";
+import { privacyNote, trustBar } from "../shared";
 import type { StageContent } from "../types";
 
 export const margine: StageContent<"margine"> = {
@@ -69,6 +69,6 @@ export const margine: StageContent<"margine"> = {
     title: "[TODO: titolo del form per la landing margine]",
     subtitle: "[TODO: sottotitolo che chiarisce cosa succede dopo l'invio]",
     submitLabel: "[TODO: etichetta del pulsante di invio]",
-    privacyNote: "[TODO: nota privacy sul trattamento dei dati del form]",
+    privacyNote,
   },
 };

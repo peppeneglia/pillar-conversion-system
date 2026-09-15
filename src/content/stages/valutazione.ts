@@ -1,4 +1,4 @@
-import { trustBar } from "../shared";
+import { privacyNote, trustBar } from "../shared";
 import type { StageContent } from "../types";
 
 export const valutazione: StageContent<"valutazione"> = {
@@ -76,6 +76,6 @@ export const valutazione: StageContent<"valutazione"> = {
     title: "Vediamo se Pillar risolve quello che gli altri non hanno risolto",
     subtitle: "30 minuti in videochiamata, senza impegno.",
     submitLabel: "Prenota la demo",
-    privacyNote: "[TODO: nota privacy sul trattamento dei dati del form]",
+    privacyNote,
   },
 };
