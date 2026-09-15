@@ -11,6 +11,7 @@ import type {
   Stage,
   StageContent,
 } from "@/content/types";
+import { track, type FormFieldName } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import {
   isValidEmail,
@@ -32,7 +33,8 @@ export type LeadFormProps = {
   stage?: Stage;
 };
 
-type ChoiceKey = "activeSites" | "currentTools";
+export type LeadFormChoiceKey = "activeSites" | "currentTools";
+type ChoiceKey = LeadFormChoiceKey;
 type ContactValues = Record<LeadFormFieldKey, string>;
 type FormErrors = Partial<Record<LeadFormFieldKey | ChoiceKey, string>>;
 
@@ -54,6 +56,10 @@ const ERROR_ORDER: (LeadFormFieldKey | ChoiceKey)[] = [
   "currentTools",
   ...CONTACT_FIELDS.map((field) => field.key),
 ];
+
+function isFormFieldName(value: string | undefined): value is FormFieldName {
+  return ERROR_ORDER.some((key) => key === value);
+}
 
 const STEP_COUNT = 3;
 
@@ -137,6 +143,7 @@ function ChoiceGroup({ formId, name, question, value, error, onChange }: ChoiceG
                 value={option.value}
                 checked={value === option.value}
                 onChange={() => onChange(option.value)}
+                data-field={name}
                 required
                 className="size-5 shrink-0 cursor-pointer accent-primary focus-visible:outline-none"
               />
@@ -160,6 +167,7 @@ export function LeadForm({
   variant = "single",
   position = "mid",
   id = "form",
+  stage,
 }: LeadFormProps) {
   const [step, setStep] = useState(0);
   const [contact, setContact] = useState<ContactValues>(EMPTY_CONTACT);
@@ -174,6 +182,9 @@ export function LeadForm({
   const confirmationRef = useRef<HTMLHeadingElement>(null);
   const honeypotRef = useRef<HTMLInputElement>(null);
   const hasNavigated = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const viewTracked = useRef(false);
+  const startTracked = useRef(false);
 
   const isMulti = variant === "multi";
   const isLastStep = !isMulti || step === STEP_COUNT - 1;
@@ -188,6 +199,43 @@ export function LeadForm({
   useEffect(() => {
     if (submitted) confirmationRef.current?.focus();
   }, [submitted]);
+
+  // form_view: once, when the top of the form enters the upper three quarters of the
+  // viewport. A root margin rather than a ratio, so tall forms on mobile still count.
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!stage || !element || viewTracked.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting) || viewTracked.current) return;
+        viewTracked.current = true;
+        track("form_view", { position, stage });
+        observer.disconnect();
+      },
+      { rootMargin: "0px 0px -25% 0px" },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [stage, position]);
+
+  // Analytics only run for forms tied to a landing stage (not in /preview).
+  function handleFirstChange(event: FormEvent<HTMLFormElement>) {
+    if (!stage || startTracked.current) return;
+    if (!(event.target instanceof HTMLInputElement)) return;
+
+    const field = event.target.dataset.field;
+    if (!isFormFieldName(field)) return;
+
+    startTracked.current = true;
+    track("form_start", { position, variant, field });
+  }
+
+  function changeStep(nextStep: number) {
+    hasNavigated.current = true;
+    setStep(nextStep);
+    if (stage) track("form_step", { step: nextStep + 1, variant });
+  }
 
   function applyErrors(nextErrors: FormErrors): boolean {
     setErrors(nextErrors);
@@ -224,14 +272,12 @@ export function LeadForm({
     if (step === 1 && !choices.currentTools) stepErrors.currentTools = copy.errors.choice;
     if (!applyErrors(stepErrors)) return;
 
-    hasNavigated.current = true;
-    setStep((current) => Math.min(current + 1, STEP_COUNT - 1));
+    changeStep(Math.min(step + 1, STEP_COUNT - 1));
   }
 
   function goBack() {
     setErrors({});
-    hasNavigated.current = true;
-    setStep((current) => Math.max(current - 1, 0));
+    changeStep(Math.max(step - 1, 0));
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -253,6 +299,7 @@ export function LeadForm({
     if (!applyErrors(validateContact(sanitized, copy.errors))) return;
 
     // This concept sends nothing anywhere: a valid submit only shows the confirmation.
+    if (stage) track("form_submit", { position, variant, stage });
     setSubmitted(true);
   }
 
@@ -266,6 +313,7 @@ export function LeadForm({
           type={field.type}
           label={copy.fields[field.key].label}
           autoComplete={field.autoComplete}
+          data-field={field.key}
           maxLength={field.key === "email" ? 254 : 120}
           required
           value={contact[field.key]}
@@ -278,6 +326,7 @@ export function LeadForm({
 
   return (
     <div
+      ref={containerRef}
       id={id}
       data-form-variant={variant}
       data-form-position={position}
@@ -302,6 +351,7 @@ export function LeadForm({
           noValidate
           aria-labelledby={titleId}
           onSubmit={handleSubmit}
+          onChangeCapture={handleFirstChange}
           className="flex flex-col gap-6"
         >
           <div className="flex flex-col gap-2">
