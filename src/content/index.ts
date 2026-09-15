@@ -21,6 +21,7 @@ export {
   beforeAfterLabels,
   footer,
   leadFormCopy,
+  privacyNote,
   sectionTitles,
   trustBar,
 } from "./shared";

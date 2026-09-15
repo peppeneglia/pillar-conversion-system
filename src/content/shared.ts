@@ -79,6 +79,9 @@ export const leadFormCopy: LeadFormCopy = {
   },
 };
 
+/** Privacy note shown under every lead form. */
+export const privacyNote = "I tuoi dati servono solo a organizzare la demo. Nessuna newsletter.";
+
 export const footer: FooterContent = {
   disclaimer: "Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.",
   note: "[TODO: nota breve sull'autore del concept e sullo scopo del progetto]",
