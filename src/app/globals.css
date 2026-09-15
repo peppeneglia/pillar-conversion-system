@@ -29,6 +29,8 @@
 
   /* Gradients */
   --gradient-text-hero: linear-gradient(208deg, #202328 49.62%, #9f51ce 65.32%, #fc899a 81.03%, #ffc1b5 97.21%);
+  /* Same stops and hues, darkened so every stop is >= 4.5:1 on #fafafa. Use this one for text. */
+  --gradient-text-hero-accessible: linear-gradient(208deg, #202328 49.62%, #9b4ccd 65.32%, #db2448 81.03%, #d2361e 97.21%);
   --gradient-separator: linear-gradient(270deg, #202328 0%, #9f51ce 33%, #fc899a 66%, #ffc1b5 99.99%);
 
   /* Layout */
