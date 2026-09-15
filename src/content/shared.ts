@@ -48,19 +48,17 @@ export const leadFormCopy: LeadFormCopy = {
     activeSites: {
       legend: "Quanti cantieri attivi gestisci?",
       options: [
-        { value: "fascia-1", label: "[TODO: prima fascia di cantieri attivi]" },
-        { value: "fascia-2", label: "[TODO: seconda fascia di cantieri attivi]" },
-        { value: "fascia-3", label: "[TODO: terza fascia di cantieri attivi]" },
-        { value: "fascia-4", label: "[TODO: quarta fascia di cantieri attivi]" },
+        { value: "1-3", label: "1-3" },
+        { value: "4-10", label: "4-10" },
+        { value: "oltre-10", label: "Più di 10" },
       ],
     },
     currentTools: {
       legend: "Cosa usi oggi?",
       options: [
-        { value: "strumento-1", label: "[TODO: primo strumento usato oggi]" },
-        { value: "strumento-2", label: "[TODO: secondo strumento usato oggi]" },
-        { value: "strumento-3", label: "[TODO: terzo strumento usato oggi]" },
-        { value: "strumento-4", label: "[TODO: quarto strumento usato oggi]" },
+        { value: "excel-carta", label: "Excel e carta" },
+        { value: "altro-gestionale", label: "Un altro gestionale" },
+        { value: "nessuno-strutturato", label: "Niente di strutturato" },
       ],
     },
     contactLegend: "I tuoi dati di contatto",
