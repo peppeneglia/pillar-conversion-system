@@ -32,7 +32,7 @@ Ambiente Windows/PowerShell 5: niente chaining con `&&`.
 - Contrasto testo/sfondo conforme WCAG AA
 - `medium-gray` (#a8a8a8) non raggiunge il contrasto WCAG AA su sfondo chiaro: usarlo solo per bordi ed elementi decorativi, mai per testo. Per il testo secondario usare `muted-foreground`
 - `--gradient-text-hero` non si usa per il testo: le tinte chiare (#fc899a, #ffc1b5) non raggiungono il contrasto WCAG AA su #fafafa. L'originale resta disponibile per superfici decorative
-- `--gradient-text-hero-accessible` è calcolato sulla soglia WCAG AA per testo grande (3:1 su #fafafa): #fc899a → #e56a80 e #ffc1b5 → #c97e71, scuriti solo quanto basta; #202328 e #9f51ce restano quelli originali. Si applica solo all'`h1` (testo grande). Se un giorno servisse in testo più piccolo, va ricalcolato a 4.5:1
+- `--gradient-text-hero-accessible` è calcolato sulla soglia WCAG AA per testo grande (3:1 su #fafafa), con margine a 3.2:1 per non restare esattamente sul limite: #fc899a → #df657b (3.20:1) e #ffc1b5 → #c17a6e (3.21:1), i colori percettivamente più vicini agli originali che raggiungono il margine; #202328 e #9f51ce restano quelli originali. Si applica solo all'`h1` (testo grande). Se un giorno servisse in testo più piccolo, va ricalcolato a 4.5:1
 - Immagini con `alt` descrittivo e distinto per ciascuna; `next/image` dove possibile
 
 ## Sicurezza
