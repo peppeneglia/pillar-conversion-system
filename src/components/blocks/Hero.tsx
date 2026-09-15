@@ -9,7 +9,15 @@ export type HeroProps = {
 // Spacing is kept tight on mobile so eyebrow, headline, subheadline, CTAs and
 // proof line all fit in the first screen of a 390x844 viewport.
 export function Hero({ content }: HeroProps) {
-  const { eyebrow, headline, subheadline, primaryCta, secondaryCta, proofLine } = content;
+  const {
+    eyebrow,
+    headline,
+    headlineAccent,
+    subheadline,
+    primaryCta,
+    secondaryCta,
+    proofLine,
+  } = content;
 
   return (
     <section aria-labelledby="hero-title" className="pt-6 pb-12 md:pt-20 md:pb-24">
@@ -20,6 +28,14 @@ export function Hero({ content }: HeroProps) {
           className="h1-huge mt-2 max-w-4xl font-bold text-balance md:mt-4"
         >
           {headline}
+          {headlineAccent && (
+            <>
+              {" "}
+              <span className="bg-(image:--gradient-text-hero-accessible) bg-clip-text text-transparent">
+                {headlineAccent}
+              </span>
+            </>
+          )}
         </h1>
         <p className="body-large mt-3 max-w-2xl text-muted-foreground md:mt-6">
           {subheadline}

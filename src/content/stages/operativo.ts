@@ -11,6 +11,7 @@ export const operativo: StageContent<"operativo"> = {
   hero: {
     eyebrow: "[TODO: eyebrow che identifica chi perde tempo in attività manuali]",
     headline: "[TODO: headline sul tempo speso in attività operative ripetitive]",
+    headlineAccent: "[TODO: parte finale della headline, resa con il gradiente]",
     subheadline: "[TODO: subheadline che spiega come Pillar accorcia i processi operativi]",
     primaryCta: {
       label: "[TODO: etichetta della CTA principale verso il form]",

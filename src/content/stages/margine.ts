@@ -11,6 +11,7 @@ export const margine: StageContent<"margine"> = {
   hero: {
     eyebrow: "[TODO: eyebrow che identifica il pubblico attento alla marginalità]",
     headline: "[TODO: headline sul problema dei margini che sfuggono]",
+    headlineAccent: "[TODO: parte finale della headline, resa con il gradiente]",
     subheadline: "[TODO: subheadline che spiega come Pillar rende visibile la marginalità]",
     primaryCta: {
       label: "[TODO: etichetta della CTA principale verso il form]",

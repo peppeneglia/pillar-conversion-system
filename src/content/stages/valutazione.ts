@@ -11,6 +11,7 @@ export const valutazione: StageContent<"valutazione"> = {
   hero: {
     eyebrow: "[TODO: eyebrow che identifica chi sta confrontando gestionali]",
     headline: "[TODO: headline sul timore di sbagliare di nuovo gestionale]",
+    headlineAccent: "[TODO: parte finale della headline, resa con il gradiente]",
     subheadline:
       "[TODO: subheadline che spiega perché Pillar riduce il rischio della scelta]",
     primaryCta: {

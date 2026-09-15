@@ -116,6 +116,8 @@ export type StageContent<S extends Stage = Stage> = {
   hero: {
     eyebrow: string;
     headline: string;
+    /** Closing part of the headline, rendered with the accessible hero gradient. */
+    headlineAccent?: string;
     subheadline: string;
     primaryCta: CtaConfig;
     secondaryCta: CtaConfig;
