@@ -31,7 +31,8 @@ Ambiente Windows/PowerShell 5: niente chaining con `&&`.
 - Ogni elemento interattivo ha stati default, hover, `focus-visible`, active, disabled. Target touch minimo 44x44px
 - Contrasto testo/sfondo conforme WCAG AA
 - `medium-gray` (#a8a8a8) non raggiunge il contrasto WCAG AA su sfondo chiaro: usarlo solo per bordi ed elementi decorativi, mai per testo. Per il testo secondario usare `muted-foreground`
-- `--gradient-text-hero` non si usa per il testo: le tinte chiare (#fc899a, #ffc1b5) non raggiungono il contrasto WCAG AA su #fafafa. Per il testo usare `--gradient-text-hero-accessible`, con le stesse tonalità scurite (ogni tappa almeno 4.5:1 su #fafafa); l'originale resta disponibile per superfici decorative
+- `--gradient-text-hero` non si usa per il testo: le tinte chiare (#fc899a, #ffc1b5) non raggiungono il contrasto WCAG AA su #fafafa. L'originale resta disponibile per superfici decorative
+- `--gradient-text-hero-accessible` è calcolato sulla soglia WCAG AA per testo grande (3:1 su #fafafa): #fc899a → #e56a80 e #ffc1b5 → #c97e71, scuriti solo quanto basta; #202328 e #9f51ce restano quelli originali. Si applica solo all'`h1` (testo grande). Se un giorno servisse in testo più piccolo, va ricalcolato a 4.5:1
 - Immagini con `alt` descrittivo e distinto per ciascuna; `next/image` dove possibile
 
 ## Sicurezza
