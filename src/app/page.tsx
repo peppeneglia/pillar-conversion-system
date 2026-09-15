@@ -1,10 +1,28 @@
 import Image from "next/image";
+import { Audience } from "@/components/blocks/Audience";
+import { BeforeAfter } from "@/components/blocks/BeforeAfter";
+import { Faq } from "@/components/blocks/Faq";
+import { Hero } from "@/components/blocks/Hero";
+import { LeadForm } from "@/components/blocks/LeadForm";
+import { Testimonials } from "@/components/blocks/Testimonials";
+import { TrustBar } from "@/components/blocks/TrustBar";
 import { Button, type ButtonVariant } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Field } from "@/components/ui/Field";
 import { Section, type SectionBackground } from "@/components/ui/Section";
+import {
+  beforeAfterLabels,
+  leadFormCopy,
+  sectionTitles,
+  stageContent,
+  testimonials,
+  trustBar,
+} from "@/content";
 
-// Temporary page to verify design tokens and primitives on screen. Replace with the real document.
+// Temporary page to verify blocks, design tokens and primitives on screen. Replace with the real document.
+
+// Sample data: the "margine" stage placeholders and every testimonial.
+const sample = stageContent.margine;
 
 type Swatch = {
   token: string;
@@ -80,7 +98,7 @@ const sectionBackgrounds: SectionBackground[] = ["background", "card", "muted"];
 function SwatchGrid({ title, swatches }: { title: string; swatches: Swatch[] }) {
   return (
     <section className="flex flex-col gap-4">
-      <h2 className="h3 font-semibold">{title}</h2>
+      <h3 className="h3 font-semibold">{title}</h3>
       <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {swatches.map((swatch) => (
           <li
@@ -119,14 +137,45 @@ export default function Home() {
       </header>
 
       <main className="flex flex-1 flex-col">
-        <Container className="flex flex-col gap-12 py-10 md:py-16">
+        <Hero content={sample.hero} />
+        <TrustBar content={trustBar} />
+        <BeforeAfter content={sample.beforeAfter} labels={beforeAfterLabels} />
+        <Audience content={sample.audience} />
+        <Testimonials testimonials={testimonials} title={sectionTitles.testimonials} />
+
+        <Section background="muted">
+          <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+            <div className="flex flex-col gap-3">
+              <p className="label-small font-medium uppercase text-foreground">
+                variant=&quot;single&quot; · position=&quot;hero&quot;
+              </p>
+              <LeadForm content={sample.form} copy={leadFormCopy} variant="single" position="hero" />
+            </div>
+            <div className="flex flex-col gap-3">
+              <p className="label-small font-medium uppercase text-foreground">
+                variant=&quot;multi&quot; · position=&quot;mid&quot;
+              </p>
+              <LeadForm
+                id="form-multi"
+                content={sample.form}
+                copy={leadFormCopy}
+                variant="multi"
+                position="mid"
+              />
+            </div>
+          </Container>
+        </Section>
+
+        <Faq items={sample.faq} title={sectionTitles.faq} />
+
+        <Container className="flex flex-col gap-12 border-t border-border py-10 md:py-16">
           <div className="flex flex-col gap-4">
             <p className="label-small uppercase text-muted-foreground">
               Pagina temporanea
             </p>
-            <h1 className="h1-huge bg-(image:--gradient-text-hero) bg-clip-text font-bold text-transparent">
+            <h2 className="h1-huge bg-(image:--gradient-text-hero) bg-clip-text font-bold text-transparent">
               Design tokens
-            </h1>
+            </h2>
             <div className="h-1 w-full rounded-full bg-(image:--gradient-separator)" />
             <Button href="#primitive" variant="secondary" className="self-start">
               Vai alle primitive
@@ -137,7 +186,7 @@ export default function Home() {
           <SwatchGrid title="Colori semantici" swatches={semanticColors} />
 
           <section className="flex flex-col gap-4">
-            <h2 className="h3 font-semibold">Gradienti</h2>
+            <h3 className="h3 font-semibold">Gradienti</h3>
             <ul className="grid gap-4 md:grid-cols-2">
               <li className="flex flex-col gap-2">
                 <div className="h-20 rounded-lg bg-(image:--gradient-text-hero)" />
@@ -151,7 +200,7 @@ export default function Home() {
           </section>
 
           <section className="flex flex-col gap-4">
-            <h2 className="h3 font-semibold">Scala tipografica</h2>
+            <h3 className="h3 font-semibold">Scala tipografica</h3>
             <ul className="flex flex-col divide-y divide-border rounded-lg border border-border bg-card">
               {typeScale.map((sample) => (
                 <li
@@ -174,7 +223,7 @@ export default function Home() {
           </section>
         </Container>
 
-        <Section id="primitive" background="muted" aria-labelledby="primitive-title">
+        <Section id="primitive" background="card" aria-labelledby="primitive-title">
           <Container className="flex flex-col gap-12">
             <div className="flex flex-col gap-2">
               <h2 id="primitive-title" className="h2 font-bold">
