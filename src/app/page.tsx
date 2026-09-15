@@ -141,7 +141,7 @@ export default function Home() {
         <TrustBar content={trustBar} />
         <BeforeAfter content={sample.beforeAfter} labels={beforeAfterLabels} />
         <Audience content={sample.audience} />
-        {sample.team && <Audience id="team" content={sample.team} background="background" />}
+        {sample.team && <Audience id="team" content={sample.team} background="accent" />}
         <Testimonials testimonials={testimonials} title={sectionTitles.testimonials} />
 
         <Section background="muted">

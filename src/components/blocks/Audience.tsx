@@ -3,8 +3,11 @@ import { Section } from "@/components/ui/Section";
 import type { AudienceContent } from "@/content/types";
 import { cn } from "@/lib/cn";
 
-/** `muted` is excluded: muted-foreground body text fails AA on it. */
-export type AudienceBackground = "card" | "background";
+/**
+ * `muted` is excluded: muted-foreground body text fails AA on it.
+ * `accent` is carbon-steel with light text, to set a section apart from its neighbours.
+ */
+export type AudienceBackground = "card" | "background" | "accent";
 
 export type AudienceProps = {
   content: AudienceContent;
@@ -12,11 +15,20 @@ export type AudienceProps = {
   id?: string;
 };
 
+// Contrast on carbon-steel (#1f2227): light-gray body 12.57:1, bullet text 12.87:1 on
+// its card, indigo check icon 3.93:1, medium-gray/60 border 3.31:1.
+const surfaceClasses: Record<AudienceBackground, { body: string; bullet: string }> = {
+  card: { body: "text-muted-foreground", bullet: "border-border bg-background" },
+  background: { body: "text-muted-foreground", bullet: "border-border bg-card" },
+  accent: { body: "text-light-gray", bullet: "border-medium-gray/60 bg-primary-foreground/6" },
+};
+
 // Used for both the audience and the team sections of a stage.
 export function Audience({ content, background = "card", id = "per-chi" }: AudienceProps) {
   const titleId = `${id}-title`;
   const bullets = content.bullets ?? [];
   const hasBullets = bullets.length > 0;
+  const surface = surfaceClasses[background];
 
   return (
     <Section id={id} background={background} aria-labelledby={titleId}>
@@ -25,7 +37,7 @@ export function Audience({ content, background = "card", id = "per-chi" }: Audie
           <h2 id={titleId} className="h2 font-bold text-balance">
             {content.title}
           </h2>
-          <p className="body-large text-muted-foreground">{content.body}</p>
+          <p className={cn("body-large", surface.body)}>{content.body}</p>
         </div>
 
         {hasBullets && (
@@ -33,10 +45,7 @@ export function Audience({ content, background = "card", id = "per-chi" }: Audie
             {bullets.map((bullet) => (
               <li
                 key={bullet}
-                className={cn(
-                  "flex items-start gap-3 rounded-lg border border-border p-4",
-                  background === "card" ? "bg-background" : "bg-card",
-                )}
+                className={cn("flex items-start gap-3 rounded-lg border p-4", surface.bullet)}
               >
                 <svg
                   aria-hidden="true"

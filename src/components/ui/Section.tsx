@@ -1,10 +1,10 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/cn";
 
-export type SectionBackground = "background" | "card" | "muted";
+export type SectionBackground = "background" | "card" | "muted" | "accent";
 
 export type SectionProps = ComponentPropsWithoutRef<"section"> & {
-  /** Surface token used as section background. */
+  /** Surface token used as section background. `accent` is dark: children need light text. */
   background?: SectionBackground;
 };
 
@@ -12,6 +12,7 @@ const backgroundClasses: Record<SectionBackground, string> = {
   background: "bg-background",
   card: "bg-card",
   muted: "bg-muted",
+  accent: "bg-carbon-steel text-primary-foreground",
 };
 
 export function Section({
