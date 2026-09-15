@@ -107,6 +107,12 @@ export type FooterContent = {
   links: FooterLink[];
 };
 
+export type AudienceContent = {
+  title: string;
+  body: string;
+  bullets?: string[];
+};
+
 export type StageContent<S extends Stage = Stage> = {
   stage: S;
   meta: {
@@ -128,11 +134,9 @@ export type StageContent<S extends Stage = Stage> = {
     title: string;
     rows: BeforeAfterRow[];
   };
-  audience: {
-    title: string;
-    body: string;
-    bullets: string[];
-  };
+  audience: AudienceContent;
+  /** Second instance of the audience block, rendered on a different background. */
+  team?: AudienceContent;
   faq: FaqItem[];
   form: {
     title: string;
