@@ -35,13 +35,65 @@ export type BeforeAfterRow = {
   after: string;
 };
 
-export type TrustBarItem = {
+/** Column labels shared by every before/after comparison. */
+export type BeforeAfterLabels = {
+  before: string;
+  after: string;
+};
+
+export type TrustStat = {
+  value: string;
   label: string;
 };
 
 export type TrustBar = {
   title: string;
-  items: TrustBarItem[];
+  stats: TrustStat[];
+  /** Client company names, rendered as neutral text placeholders instead of logos. */
+  clients: string[];
+};
+
+export type SectionTitles = {
+  testimonials: string;
+  faq: string;
+};
+
+export type ChoiceOption = {
+  value: string;
+  label: string;
+};
+
+export type ChoiceQuestion = {
+  legend: string;
+  options: ChoiceOption[];
+};
+
+export type LeadFormFieldKey = "fullName" | "company" | "phone" | "email";
+
+/** Form microcopy shared by every stage; stage-specific copy lives in `StageContent.form`. */
+export type LeadFormCopy = {
+  fields: Record<LeadFormFieldKey, { label: string }>;
+  honeypotLabel: string;
+  steps: {
+    activeSites: ChoiceQuestion;
+    currentTools: ChoiceQuestion;
+    contactLegend: string;
+  };
+  /** Template with `{current}` and `{total}` tokens. */
+  progressLabel: string;
+  nextLabel: string;
+  backLabel: string;
+  errors: {
+    required: string;
+    fullName: string;
+    phone: string;
+    email: string;
+    choice: string;
+  };
+  confirmation: {
+    title: string;
+    body: string;
+  };
 };
 
 export type FooterLink = {

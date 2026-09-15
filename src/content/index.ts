@@ -17,6 +17,12 @@ export function getTestimonialsForStage(stage: Stage): Testimonial[] {
   return testimonials.filter((testimonial) => testimonial.stages.includes(stage));
 }
 
-export { footer, trustBar } from "./shared";
+export {
+  beforeAfterLabels,
+  footer,
+  leadFormCopy,
+  sectionTitles,
+  trustBar,
+} from "./shared";
 export { testimonials } from "./testimonials";
 export type * from "./types";
