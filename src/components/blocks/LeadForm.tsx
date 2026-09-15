@@ -8,6 +8,7 @@ import type {
   ChoiceQuestion,
   LeadFormCopy,
   LeadFormFieldKey,
+  Stage,
   StageContent,
 } from "@/content/types";
 import { cn } from "@/lib/cn";
@@ -27,6 +28,8 @@ export type LeadFormProps = {
   variant?: LeadFormVariant;
   position?: LeadFormPosition;
   id?: string;
+  /** Landing stage the form belongs to; used for analytics. */
+  stage?: Stage;
 };
 
 type ChoiceKey = "activeSites" | "currentTools";
