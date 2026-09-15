@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { LandingAnalytics } from "@/components/analytics/LandingAnalytics";
 import { Audience } from "@/components/blocks/Audience";
 import { BeforeAfter } from "@/components/blocks/BeforeAfter";
 import { Faq } from "@/components/blocks/Faq";
@@ -52,6 +53,7 @@ export default async function StagePage({ params }: PageProps<"/lp/[stage]">) {
 
   return (
     <main className="flex flex-1 flex-col">
+      <LandingAnalytics stage={stage} />
       <Hero content={content.hero} />
       <TrustBar content={trustBar} />
       <BeforeAfter id="prima-dopo" content={content.beforeAfter} labels={beforeAfterLabels} />
@@ -66,7 +68,7 @@ export default async function StagePage({ params }: PageProps<"/lp/[stage]">) {
         <Container>
           <div className="mx-auto max-w-3xl">
             {/* The variant comes from ?form=, read on the client; the static HTML ships the single form. */}
-            <Suspense fallback={<LeadForm {...formProps} variant="single" />}>
+            <Suspense fallback={<LeadForm {...formProps} stage={undefined} variant="single" />}>
               <StageLeadForm {...formProps} />
             </Suspense>
           </div>

@@ -41,10 +41,19 @@ export function Hero({ content }: HeroProps) {
           {subheadline}
         </p>
         <div className="mt-5 flex w-full flex-col gap-3 md:mt-8 md:w-auto md:flex-row">
-          <Button href={primaryCta.target} className="w-full md:w-auto">
+          <Button
+            href={primaryCta.target}
+            data-track-cta="hero_primary"
+            className="w-full md:w-auto"
+          >
             {primaryCta.label}
           </Button>
-          <Button href={secondaryCta.target} variant="secondary" className="w-full md:w-auto">
+          <Button
+            href={secondaryCta.target}
+            variant="secondary"
+            data-track-cta="hero_secondary"
+            className="w-full md:w-auto"
+          >
             {secondaryCta.label}
           </Button>
         </div>
