@@ -1,9 +1,11 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import { Audience } from "@/components/blocks/Audience";
 import { BeforeAfter } from "@/components/blocks/BeforeAfter";
 import { Faq } from "@/components/blocks/Faq";
 import { Hero } from "@/components/blocks/Hero";
 import { LeadForm } from "@/components/blocks/LeadForm";
+import { SiteFooter } from "@/components/blocks/SiteFooter";
+import { SiteHeader } from "@/components/blocks/SiteHeader";
 import { Testimonials } from "@/components/blocks/Testimonials";
 import { TrustBar } from "@/components/blocks/TrustBar";
 import { Button, type ButtonVariant } from "@/components/ui/Button";
@@ -12,6 +14,7 @@ import { Field } from "@/components/ui/Field";
 import { Section, type SectionBackground } from "@/components/ui/Section";
 import {
   beforeAfterLabels,
+  footer,
   leadFormCopy,
   sectionTitles,
   stageContent,
@@ -19,7 +22,11 @@ import {
   trustBar,
 } from "@/content";
 
-// Temporary page to verify blocks, design tokens and primitives on screen. Replace with the real document.
+// Component preview: blocks, design tokens and primitives. noindex is inherited from the root layout.
+
+export const metadata: Metadata = {
+  title: "Anteprima componenti — concept non ufficiale",
+};
 
 // Sample data: the "valutazione" stage (final copy) and every testimonial.
 const sample = stageContent.valutazione;
@@ -124,17 +131,7 @@ function StateCaption({ children }: { children: string }) {
 export default function Home() {
   return (
     <>
-      <header className="border-b border-border bg-card">
-        <Container className="flex items-center py-4">
-          <Image
-            src="/logo.svg"
-            alt="Logo Pillar"
-            width={128}
-            height={40}
-            priority
-          />
-        </Container>
-      </header>
+      <SiteHeader />
 
       <main className="flex flex-1 flex-col">
         <Hero content={sample.hero} />
@@ -390,13 +387,7 @@ export default function Home() {
         </Section>
       </main>
 
-      <footer className="border-t border-border">
-        <Container className="py-6">
-          <p className="label-small text-muted-foreground">
-            Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.
-          </p>
-        </Container>
-      </footer>
+      <SiteFooter content={footer} />
     </>
   );
 }
