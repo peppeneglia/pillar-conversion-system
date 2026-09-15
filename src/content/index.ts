@@ -13,6 +13,12 @@ const stageMap: { [S in Stage]: StageContent<S> } = {
 
 export const stageContent: Record<Stage, StageContent> = stageMap;
 
+export const stages = Object.keys(stageMap) as Stage[];
+
+export function isStage(value: string): value is Stage {
+  return (stages as string[]).includes(value);
+}
+
 export function getTestimonialsForStage(stage: Stage): Testimonial[] {
   return testimonials.filter((testimonial) => testimonial.stages.includes(stage));
 }

@@ -103,6 +103,8 @@ export type FooterLink = {
 
 export type FooterContent = {
   disclaimer: string;
+  /** Rendered only on landing pages, where `#form` exists. */
+  cta: CtaConfig;
   note: string;
   links: FooterLink[];
 };

@@ -84,6 +84,10 @@ export const privacyNote = "I tuoi dati servono solo a organizzare la demo. Ness
 
 export const footer: FooterContent = {
   disclaimer: "Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.",
+  cta: {
+    label: "Prenota una demo",
+    target: "#form",
+  },
   note: "[TODO: nota breve sull'autore del concept e sullo scopo del progetto]",
   links: [
     {
