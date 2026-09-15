@@ -21,8 +21,8 @@ import {
 
 // Temporary page to verify blocks, design tokens and primitives on screen. Replace with the real document.
 
-// Sample data: the "margine" stage placeholders and every testimonial.
-const sample = stageContent.margine;
+// Sample data: the "valutazione" stage (final copy) and every testimonial.
+const sample = stageContent.valutazione;
 
 type Swatch = {
   token: string;
