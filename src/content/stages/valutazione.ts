@@ -4,72 +4,78 @@ import type { StageContent } from "../types";
 export const valutazione: StageContent<"valutazione"> = {
   stage: "valutazione",
   meta: {
-    title: "[TODO: meta title della landing per chi sta valutando un nuovo gestionale]",
+    title: "Gestionale per imprese edili — Pillar",
     description:
-      "[TODO: meta description di circa 150 caratteri sulla scelta del gestionale]",
+      "Cassa, fatture, preventivi e commesse in un unico posto. Vedi il margine di ogni cantiere mentre i lavori sono ancora aperti.",
   },
   hero: {
-    eyebrow: "[TODO: eyebrow che identifica chi sta confrontando gestionali]",
-    headline: "[TODO: headline sul timore di sbagliare di nuovo gestionale]",
-    headlineAccent: "[TODO: parte finale della headline, resa con il gradiente]",
+    eyebrow: "Gestionale per imprese edili",
+    headline: "Hai già provato un gestionale.",
+    headlineAccent: "Questa volta parti dai numeri.",
     subheadline:
-      "[TODO: subheadline che spiega perché Pillar riduce il rischio della scelta]",
+      "Pillar collega cassa, fatture e cantieri. Vedi il margine di ogni commessa mentre i lavori sono ancora aperti, non a consuntivo.",
     primaryCta: {
-      label: "[TODO: etichetta della CTA principale verso il form]",
+      label: "Prenota una demo",
       target: "#form",
     },
     secondaryCta: {
-      label: "[TODO: etichetta della CTA secondaria verso le domande frequenti]",
-      target: "#faq",
+      label: "Come funziona",
+      target: "#prima-dopo",
     },
-    proofLine:
-      "[TODO: riga di prova sociale che richiama MAC SRL o Euroservice, senza numeri inventati]",
+    proofLine: "Oltre 700 imprese edili lo usano ogni giorno",
   },
   trustBar,
   beforeAfter: {
-    title: "[TODO: titolo del confronto tra gestionali precedenti e Pillar]",
+    title: "Perché gli altri gestionali si sono fermati",
     rows: [
       {
-        before: "[TODO: limite dei gestionali precedenti, primo aspetto]",
-        after: "[TODO: come Pillar affronta lo stesso aspetto]",
+        before: "Il gestionale chiede di inserire tutto a mano, e nessuno lo fa",
+        after: "Bolle e rapportini arrivano da WhatsApp, senza app da installare",
       },
       {
-        before: "[TODO: limite dei gestionali precedenti, secondo aspetto]",
-        after: "[TODO: come Pillar affronta lo stesso aspetto]",
+        before: "Parte dal computo metrico, che il cliente privato non capisce",
+        after: "Preventivo rapido, con AI, o computo caricato: scegli tu",
       },
       {
-        before: "[TODO: limite dei gestionali precedenti, terzo aspetto]",
-        after: "[TODO: come Pillar affronta lo stesso aspetto]",
+        before: "Copre metà del lavoro, e ne servono altri due",
+        after: "Cassa, fatture, preventivi e commesse nello stesso posto",
       },
     ],
   },
   audience: {
-    title: "[TODO: titolo della sezione a chi è rivolta la landing valutazione]",
-    body: "[TODO: paragrafo che descrive l'azienda reduce da gestionali non adatti]",
+    title: "Chi cerca un gestionale ha già una lista di cose che non hanno funzionato",
+    body: "La domanda non è quante funzioni ha. È se lo userete davvero, e se qualcuno risponde quando si blocca.",
     bullets: [
-      "[TODO: primo criterio con cui l'azienda valuta un gestionale]",
-      "[TODO: secondo criterio con cui l'azienda valuta un gestionale]",
-      "[TODO: terzo criterio con cui l'azienda valuta un gestionale]",
+      "Chi in azienda deve usarlo: titolare, ufficio, capocantiere, operai",
+      "Quanto tempo serve prima di essere operativi",
+      "Cosa succede ai dati che avete già",
     ],
   },
   faq: [
     {
-      question: "[TODO: prima domanda frequente sul passaggio da un altro gestionale]",
-      answer: "[TODO: risposta alla prima domanda]",
+      question: "Quanto tempo serve per partire?",
+      answer:
+        "La configurazione si fa insieme e in poche ore si è operativi, con affiancamento nelle prime settimane.",
     },
     {
-      question: "[TODO: seconda domanda frequente sul passaggio da un altro gestionale]",
-      answer: "[TODO: risposta alla seconda domanda]",
+      question: "Sostituisce il software del commercialista?",
+      answer: "No. Raccoglie e ordina i dati dei cantieri, che gli passate già pronti.",
     },
     {
-      question: "[TODO: terza domanda frequente sul passaggio da un altro gestionale]",
-      answer: "[TODO: risposta alla terza domanda]",
+      question: "Funziona anche per una piccola impresa?",
+      answer:
+        "Sì. È pensato per imprese che gestiscono più cantieri, sia in crescita sia strutturate.",
+    },
+    {
+      question: "Quanto costa?",
+      answer:
+        "Abbonamento mensile, con prezzo definito in demo in base alla dimensione dell'impresa.",
     },
   ],
   form: {
-    title: "[TODO: titolo del form per la landing valutazione]",
-    subtitle: "[TODO: sottotitolo che chiarisce cosa succede dopo l'invio]",
-    submitLabel: "[TODO: etichetta del pulsante di invio]",
+    title: "Vediamo se Pillar risolve quello che gli altri non hanno risolto",
+    subtitle: "30 minuti in videochiamata, senza impegno.",
+    submitLabel: "Prenota la demo",
     privacyNote: "[TODO: nota privacy sul trattamento dei dati del form]",
   },
 };
