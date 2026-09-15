@@ -30,6 +30,7 @@ Ambiente Windows/PowerShell 5: niente chaining con `&&`.
 - HTML semantico: un solo `h1` per pagina, gerarchia dei titoli corretta, landmark (`header`, `main`, `footer`), `label` associata a ogni input
 - Ogni elemento interattivo ha stati default, hover, `focus-visible`, active, disabled. Target touch minimo 44x44px
 - Contrasto testo/sfondo conforme WCAG AA
+- `medium-gray` (#a8a8a8) non raggiunge il contrasto WCAG AA su sfondo chiaro: usarlo solo per bordi ed elementi decorativi, mai per testo. Per il testo secondario usare `muted-foreground`
 - Immagini con `alt` descrittivo e distinto per ciascuna; `next/image` dove possibile
 
 ## Sicurezza
