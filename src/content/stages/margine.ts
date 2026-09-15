@@ -4,71 +4,77 @@ import type { StageContent } from "../types";
 export const margine: StageContent<"margine"> = {
   stage: "margine",
   meta: {
-    title: "[TODO: meta title della landing per chi vuole recuperare marginalità]",
+    title: "Marginalità di cantiere per imprese edili — Pillar",
     description:
-      "[TODO: meta description di circa 150 caratteri sul controllo della marginalità]",
+      "Il margine di ogni cantiere in tempo reale. Costi reali, ore misurate, scostamenti visibili mentre i lavori sono ancora aperti.",
   },
   hero: {
-    eyebrow: "[TODO: eyebrow che identifica il pubblico attento alla marginalità]",
-    headline: "[TODO: headline sul problema dei margini che sfuggono]",
-    headlineAccent: "[TODO: parte finale della headline, resa con il gradiente]",
-    subheadline: "[TODO: subheadline che spiega come Pillar rende visibile la marginalità]",
+    eyebrow: "Marginalità di cantiere",
+    headline: "Sai quanto fatturi.",
+    headlineAccent: "Sai quanto guadagni?",
+    subheadline:
+      "Pillar ti mostra il margine di ogni cantiere mentre i lavori sono aperti. Costi, ore, bolle e varianti tracciati in tempo reale.",
     primaryCta: {
-      label: "[TODO: etichetta della CTA principale verso il form]",
+      label: "Prenota una demo",
       target: "#form",
     },
     secondaryCta: {
-      label: "[TODO: etichetta della CTA secondaria verso il confronto prima/dopo]",
+      label: "Come funziona",
       target: "#prima-dopo",
     },
-    proofLine:
-      "[TODO: riga di prova sociale che richiama la testimonianza di Serra SRL, senza numeri inventati]",
+    proofLine: "Oltre 700 imprese edili lo usano ogni giorno",
   },
   trustBar,
   beforeAfter: {
-    title: "[TODO: titolo del confronto prima/dopo sulla marginalità]",
+    title: "Il margine, prima e dopo",
     rows: [
       {
-        before: "[TODO: situazione prima, primo aspetto della marginalità]",
-        after: "[TODO: situazione dopo, stesso aspetto]",
+        before: "Il margine lo scopri a lavori chiusi, quando non puoi più intervenire",
+        after: "Lo vedi mentre il cantiere è aperto, cantiere per cantiere",
       },
       {
-        before: "[TODO: situazione prima, secondo aspetto della marginalità]",
-        after: "[TODO: situazione dopo, stesso aspetto]",
+        before: "I costi li stimi a occhio, le ore te le fai dire",
+        after: "Costi reali e ore misurate, aggiornati ogni giorno",
       },
       {
-        before: "[TODO: situazione prima, terzo aspetto della marginalità]",
-        after: "[TODO: situazione dopo, stesso aspetto]",
+        before: "Un cantiere in utile può prosciugarti la cassa e non te ne accorgi",
+        after: "Redditività e liquidità, separate e visibili",
       },
     ],
   },
   audience: {
-    title: "[TODO: titolo della sezione a chi è rivolta la landing margine]",
-    body: "[TODO: paragrafo che descrive l'azienda che non ha visibilità sui margini]",
+    title: "La maggior parte delle imprese edili sa quanto fattura, non quanto guadagna",
+    body: "Non è una questione di contabilità. È che i numeri arrivano quando le decisioni sono già state prese.",
     bullets: [
-      "[TODO: primo segnale che la marginalità non è sotto controllo]",
-      "[TODO: secondo segnale che la marginalità non è sotto controllo]",
-      "[TODO: terzo segnale che la marginalità non è sotto controllo]",
+      "Quale cantiere rende e quale no",
+      "Dove il preventivo si è scostato dal consuntivo",
+      "Quando il budget sta per sforare",
     ],
   },
   faq: [
     {
-      question: "[TODO: prima domanda frequente sulla marginalità]",
-      answer: "[TODO: risposta alla prima domanda]",
+      question: "Posso vedere costi e marginalità in tempo reale?",
+      answer: "Sì. Costi, ricavi, margini e avanzamento aggiornati per ogni cantiere.",
     },
     {
-      question: "[TODO: seconda domanda frequente sulla marginalità]",
-      answer: "[TODO: risposta alla seconda domanda]",
+      question: "Come fanno i dati ad arrivare senza inserirli a mano?",
+      answer:
+        "Bolle e rapportini arrivano da WhatsApp, i movimenti bancari e le fatture si collegano alle commesse.",
     },
     {
-      question: "[TODO: terza domanda frequente sulla marginalità]",
-      answer: "[TODO: risposta alla terza domanda]",
+      question: "Sostituisce il software del commercialista?",
+      answer: "No. Raccoglie e ordina i dati dei cantieri, che gli passate già pronti.",
+    },
+    {
+      question: "Quanto costa?",
+      answer:
+        "Abbonamento mensile, con prezzo definito in demo in base alla dimensione dell'impresa.",
     },
   ],
   form: {
-    title: "[TODO: titolo del form per la landing margine]",
-    subtitle: "[TODO: sottotitolo che chiarisce cosa succede dopo l'invio]",
-    submitLabel: "[TODO: etichetta del pulsante di invio]",
+    title: "Guardiamo i numeri di un tuo cantiere",
+    subtitle: "30 minuti in videochiamata, senza impegno.",
+    submitLabel: "Prenota la demo",
     privacyNote,
   },
 };
