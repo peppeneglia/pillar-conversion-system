@@ -39,9 +39,9 @@ export function Faq({ items, title, id = "faq" }: FaqProps) {
           {items.map((item) => (
             <details
               key={item.question}
-              className="group rounded-lg border border-border bg-card"
+              className="group rounded-xl border border-border bg-card"
             >
-              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 rounded-lg px-4 py-4 font-medium transition-colors duration-150 outline-offset-2 hover:bg-muted focus-visible:outline-2 focus-visible:outline-primary active:bg-border motion-reduce:transition-none md:px-6 [&::-webkit-details-marker]:hidden">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 rounded-xl px-4 py-4 font-medium transition-colors duration-150 outline-offset-2 hover:bg-muted focus-visible:outline-2 focus-visible:outline-primary active:bg-border motion-reduce:transition-none md:px-6 [&::-webkit-details-marker]:hidden">
                 <span>{item.question}</span>
                 <svg
                   aria-hidden="true"

@@ -37,6 +37,12 @@
   --gradient-text-hero-accessible: linear-gradient(208deg, #202328 49.62%, #9f51ce 65.32%, #df657b 81.03%, #c17a6e 97.21%);
   --gradient-separator: linear-gradient(270deg, #202328 0%, #9f51ce 33%, #fc899a 66%, #ffc1b5 99.99%);
 
+  /* Brand surfaces: dark header/footer cards and the pink-to-purple accent. */
+  --gradient-surface-dark: linear-gradient(115deg, #1f2227 0%, #2b2340 55%, #4b2f78 100%);
+  --gradient-brand: linear-gradient(100deg, #fc899a 0%, #9f51ce 55%, #6c5ae6 100%);
+  /* Text-safe version of the accent: both stops >= 3.2:1 on white. */
+  --gradient-brand-accessible: linear-gradient(100deg, #df657b 0%, #9b4ccd 100%);
+
   /* Layout */
   --spacing-container: 1260px;
 }

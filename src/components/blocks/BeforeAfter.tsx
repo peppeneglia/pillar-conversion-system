@@ -17,7 +17,7 @@ export function BeforeAfter({ content, labels, id = "prima-dopo" }: BeforeAfterP
   return (
     <Section id={id} aria-labelledby={titleId}>
       <Container className="flex flex-col gap-8 md:gap-12">
-        <h2 id={titleId} className="h2 max-w-3xl font-bold text-balance">
+        <h2 id={titleId} className="h2 max-w-4xl font-bold text-balance">
           {content.title}
         </h2>
 
@@ -54,7 +54,7 @@ export function BeforeAfter({ content, labels, id = "prima-dopo" }: BeforeAfterP
                     />
                     {labels.after}
                   </span>
-                  <p className="font-medium text-foreground">{row.after}</p>
+                  <p className="body-large font-medium text-foreground">{row.after}</p>
                 </div>
               </li>
             ))}

@@ -33,7 +33,7 @@ export function Audience({ content, background = "card", id = "per-chi" }: Audie
   return (
     <Section id={id} background={background} aria-labelledby={titleId}>
       <Container className={cn("grid gap-8", hasBullets && "md:grid-cols-2 md:gap-16")}>
-        <div className={cn("flex flex-col gap-4", !hasBullets && "max-w-3xl")}>
+        <div className={cn("flex flex-col gap-4", !hasBullets && "max-w-[70ch]")}>
           <h2 id={titleId} className="h2 font-bold text-balance">
             {content.title}
           </h2>

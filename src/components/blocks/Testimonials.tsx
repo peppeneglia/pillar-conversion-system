@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import type { Testimonial } from "@/content/types";
+import { cn } from "@/lib/cn";
 import { getInitials } from "@/lib/initials";
 
 export type TestimonialsProps = {
@@ -15,44 +16,71 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
   return (
     <Section id={id} background="muted" aria-labelledby={titleId}>
       <Container className="flex flex-col gap-8 md:gap-12">
-        <h2 id={titleId} className="h2 max-w-3xl font-bold text-balance">
+        <h2 id={titleId} className="h2 max-w-4xl font-bold text-balance">
           {title}
         </h2>
 
         <ul className="grid gap-4 md:grid-cols-2 md:gap-6">
-          {testimonials.map((testimonial) => (
-            <li key={testimonial.id}>
-              <figure className="flex h-full flex-col justify-between gap-6 rounded-lg border border-border bg-card p-6 md:p-8">
-                <blockquote>
-                  <p className="body-large text-foreground">{testimonial.quote}</p>
-                </blockquote>
+          {testimonials.map((testimonial, index) => {
+            // The first quote is featured on the dark brand surface.
+            const featured = index === 0;
+            return (
+              <li key={testimonial.id} className={cn(featured && "md:col-span-2")}>
+                <figure
+                  className={cn(
+                    "flex h-full flex-col justify-between gap-6 rounded-2xl p-6 md:p-8",
+                    featured
+                      ? "bg-(image:--gradient-surface-dark) text-primary-foreground shadow-lg"
+                      : "border border-border bg-card",
+                  )}
+                >
+                  <blockquote>
+                    <p className={cn(featured ? "h3 font-medium text-balance" : "body-large")}>
+                      {testimonial.quote}
+                    </p>
+                  </blockquote>
 
-                <figcaption className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
-                  {/* Names are read below; avatars are decorative. */}
-                  <div aria-hidden="true" className="flex shrink-0 gap-2">
-                    {testimonial.people.map((person) => (
-                      <span
-                        key={person.name}
-                        className="flex size-11 items-center justify-center rounded-full bg-carbon-steel label-medium font-semibold text-primary-foreground"
+                  <figcaption className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
+                    {/* Names are read below; avatars are decorative. */}
+                    <div aria-hidden="true" className="flex shrink-0 gap-2">
+                      {testimonial.people.map((person) => (
+                        <span
+                          key={person.name}
+                          className={cn(
+                            "flex size-11 items-center justify-center rounded-full label-medium font-semibold",
+                            featured
+                              ? "bg-primary-foreground text-carbon-steel"
+                              : "bg-carbon-steel text-primary-foreground",
+                          )}
+                        >
+                          {getInitials(person.name)}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex min-w-0 flex-col">
+                      {testimonial.people.map((person) => (
+                        <p key={person.name} className="text-sm">
+                          <span className="font-semibold">{person.name}</span>
+                          <span className={featured ? "text-light-gray" : "text-muted-foreground"}>
+                            , {person.role}
+                          </span>
+                        </p>
+                      ))}
+                      <p
+                        className={cn(
+                          "text-sm",
+                          featured ? "text-light-gray" : "text-muted-foreground",
+                        )}
                       >
-                        {getInitials(person.name)}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex min-w-0 flex-col">
-                    {testimonial.people.map((person) => (
-                      <p key={person.name} className="text-sm">
-                        <span className="font-semibold text-foreground">{person.name}</span>
-                        <span className="text-muted-foreground">, {person.role}</span>
+                        {testimonial.company}
                       </p>
-                    ))}
-                    <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                  </div>
-                </figcaption>
-              </figure>
-            </li>
-          ))}
+                    </div>
+                  </figcaption>
+                </figure>
+              </li>
+            );
+          })}
         </ul>
       </Container>
     </Section>
