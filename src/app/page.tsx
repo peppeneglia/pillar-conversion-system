@@ -49,7 +49,13 @@ export default async function DocumentPage() {
             <h1 id="document-title" className="h1-huge font-bold text-pretty">
               {documentContent.title}
             </h1>
-            <p className="body-large max-w-[70ch] text-muted-foreground">{documentContent.lede}</p>
+            <div className="flex flex-col gap-2">
+              {documentContent.lede.map((line) => (
+                <p key={line} className="body-large text-muted-foreground">
+                  {line}
+                </p>
+              ))}
+            </div>
             <div
               aria-hidden="true"
               className="h-1 w-full rounded-full bg-(image:--gradient-separator)"
@@ -61,35 +67,33 @@ export default async function DocumentPage() {
           <Container className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <SectionTitle id="traffico">{traffic.title}</SectionTitle>
-              <p className="body-large max-w-[70ch] text-muted-foreground">{traffic.body}</p>
+              <p className="body-large text-muted-foreground">{traffic.body}</p>
             </div>
 
             <dl className="grid gap-4 md:grid-cols-2 md:gap-6">
               {traffic.stats.map((stat) => (
                 <div
                   key={stat.channel}
-                  className="flex flex-wrap items-end justify-between gap-6 rounded-2xl border border-border bg-background p-6 md:p-8"
+                  className="flex items-center justify-between gap-6 rounded-2xl border border-border bg-background p-6 md:p-8"
                 >
-                  <div className="flex flex-col gap-2">
-                    <dt className="label-medium font-semibold uppercase text-muted-foreground">
-                      {stat.channel}
-                    </dt>
-                    <dd className="flex flex-col gap-1">
-                      <span className="h1-huge w-fit bg-(image:--gradient-brand-accessible) bg-clip-text font-bold text-transparent">
-                        {stat.value}
-                      </span>
-                      <span className="h4 font-medium text-foreground">{stat.label}</span>
-                    </dd>
-                  </div>
-                  <span
-                    aria-hidden="true"
-                    className="h-20 w-2 rounded-full bg-(image:--gradient-brand)"
-                  />
+                  <dt className="h2 font-bold">{stat.channel}</dt>
+                  <dd className="flex flex-col items-end gap-1 text-right">
+                    <span className="h1-huge bg-(image:--gradient-brand-accessible) bg-clip-text font-bold text-transparent">
+                      {stat.value}
+                    </span>
+                    <span className="h4 font-medium text-muted-foreground">{stat.label}</span>
+                  </dd>
                 </div>
               ))}
             </dl>
 
-            <p className="max-w-[70ch] text-muted-foreground">{traffic.note}</p>
+            <div className="flex flex-col gap-2">
+              {traffic.note.map((line) => (
+                <p key={line} className="text-muted-foreground">
+                  {line}
+                </p>
+              ))}
+            </div>
           </Container>
         </Section>
 
@@ -123,7 +127,7 @@ export default async function DocumentPage() {
           <Container className="flex flex-col gap-4">
             <SectionTitle id="oggi">{problem.title}</SectionTitle>
             {problem.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="body-large max-w-[70ch] text-on-dark-muted">
+              <p key={paragraph} className="body-large text-on-dark-muted">
                 {paragraph}
               </p>
             ))}
