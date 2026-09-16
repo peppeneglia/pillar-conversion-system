@@ -101,12 +101,6 @@ export type FooterLink = {
   href: string;
 };
 
-/** Landing header actions. */
-export type HeaderCtas = {
-  primary: CtaConfig;
-  secondary: CtaConfig;
-};
-
 export type NotFoundContent = {
   title: string;
   body: string;
@@ -175,6 +169,8 @@ export type DocumentStage = {
 export type MeasurementRow = {
   question: string;
   metric: string;
+  /** What a high or low number would mean. */
+  reading: string;
   events: string[];
 };
 
@@ -212,8 +208,8 @@ export type DocumentContent = {
     title: string;
     body: string;
     metricLabel: string;
+    readingLabel: string;
     eventsLabel: string;
     rows: MeasurementRow[];
-    note: string;
   };
 };

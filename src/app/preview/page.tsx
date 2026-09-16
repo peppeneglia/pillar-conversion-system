@@ -387,7 +387,7 @@ export default function Home() {
         </Section>
       </main>
 
-      <SiteFooter content={footer} />
+      <SiteFooter content={footer} showLinks />
     </>
   );
 }

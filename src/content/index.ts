@@ -27,7 +27,7 @@ export {
   beforeAfterLabels,
   disclaimer,
   footer,
-  headerCtas,
+  headerCta,
   leadFormCopy,
   notFoundContent,
   privacyNote,

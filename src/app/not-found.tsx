@@ -29,7 +29,7 @@ export default function NotFound() {
           </Button>
         </Container>
       </main>
-      <SiteFooter content={footer} />
+      <SiteFooter content={footer} showLinks />
     </>
   );
 }

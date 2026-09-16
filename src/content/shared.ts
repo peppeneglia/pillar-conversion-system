@@ -1,6 +1,6 @@
 import type {
   BeforeAfterLabels,
-  HeaderCtas,
+  CtaConfig,
   FooterContent,
   LeadFormCopy,
   NotFoundContent,
@@ -10,7 +10,7 @@ import type {
 
 // Figures published by Pillar on pillar.it, read on 14/09/2026. Not independently verified.
 export const trustBar: TrustBar = {
-  title: "Perché le imprese edili scelgono Pillar",
+  title: "Imprese edili che usano Pillar ogni giorno",
   stats: [
     { value: "700+", label: "imprese attive" },
     { value: "2000+", label: "progetti gestiti" },
@@ -81,10 +81,7 @@ export const privacyNote = "I tuoi dati servono solo a organizzare la demo. Ness
 export const disclaimer =
   "Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.";
 
-export const headerCtas: HeaderCtas = {
-  secondary: { label: "Approfondisci", target: "#prima-dopo" },
-  primary: { label: "Prenota demo", target: "#form" },
-};
+export const headerCta: CtaConfig = { label: "Prenota demo", target: "#form" };
 
 export const notFoundContent: NotFoundContent = {
   title: "Pagina non trovata",
@@ -103,9 +100,10 @@ export const footer: FooterContent = {
   },
   note: disclaimer,
   links: [
-    {
-      label: "[TODO: etichetta del link al sito ufficiale o al portfolio]",
-      href: "#",
-    },
+    { label: "Documento", href: "/" },
+    { label: "Landing marginalità", href: "/lp/margine" },
+    { label: "Landing gestionale", href: "/lp/valutazione" },
+    { label: "Landing operativo", href: "/lp/operativo" },
+    { label: "Anteprima componenti", href: "/preview" },
   ],
 };

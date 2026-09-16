@@ -2,18 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import type { HeaderCtas } from "@/content/types";
+import type { CtaConfig } from "@/content/types";
 import { cn } from "@/lib/cn";
 
 export type SiteHeaderProps = {
-  /** Landing actions; omitted where their targets do not exist on the page. */
-  ctas?: HeaderCtas;
+  /** Landing action; omitted where its target does not exist on the page. */
+  cta?: CtaConfig;
   sticky?: boolean;
 };
 
-export function SiteHeader({ ctas, sticky = false }: SiteHeaderProps) {
+export function SiteHeader({ cta, sticky = false }: SiteHeaderProps) {
   return (
-    <header className={cn("pt-3 select-none", sticky && "sticky top-0 z-40")}>
+    <header className={cn("bg-background pt-3 pb-3 select-none", sticky && "sticky top-0 z-40")}>
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-(image:--gradient-surface-dark) px-4 py-3 shadow-lg md:px-6">
           <Link
@@ -31,25 +31,15 @@ export function SiteHeader({ ctas, sticky = false }: SiteHeaderProps) {
             />
           </Link>
 
-          {ctas && (
-            <div className="flex flex-1 flex-wrap items-center justify-end gap-2">
-              <Button
-                href={ctas.secondary.target}
-                variant="ghost"
-                size="sm"
-                data-track-cta="header_secondary"
-              >
-                {ctas.secondary.label}
-              </Button>
-              <Button
-                href={ctas.primary.target}
-                variant="contrast"
-                size="sm"
-                data-track-cta="header_primary"
-              >
-                {ctas.primary.label}
-              </Button>
-            </div>
+          {cta && (
+            <Button
+              href={cta.target}
+              variant="contrast"
+              size="sm"
+              data-track-cta="header_primary"
+            >
+              {cta.label}
+            </Button>
           )}
         </div>
       </Container>
