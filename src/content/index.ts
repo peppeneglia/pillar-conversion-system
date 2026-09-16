@@ -29,6 +29,7 @@ export {
   disclaimer,
   footer,
   leadFormCopy,
+  notFoundContent,
   privacyNote,
   sectionTitles,
   trustBar,

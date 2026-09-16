@@ -2,6 +2,7 @@ import type {
   BeforeAfterLabels,
   FooterContent,
   LeadFormCopy,
+  NotFoundContent,
   SectionTitles,
   TrustBar,
 } from "./types";
@@ -80,6 +81,15 @@ export const disclaimer =
   "Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.";
 
 export const conceptBadge = "Concept non ufficiale";
+
+export const notFoundContent: NotFoundContent = {
+  title: "Pagina non trovata",
+  body: "Questo indirizzo non corrisponde a nessuna pagina del concept.",
+  cta: {
+    label: "Torna al documento",
+    target: "/",
+  },
+};
 
 export const footer: FooterContent = {
   disclaimer,

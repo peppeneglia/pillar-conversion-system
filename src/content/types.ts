@@ -101,6 +101,12 @@ export type FooterLink = {
   href: string;
 };
 
+export type NotFoundContent = {
+  title: string;
+  body: string;
+  cta: CtaConfig;
+};
+
 export type FooterContent = {
   disclaimer: string;
   /** Rendered only on landing pages, where `#form` exists. */
