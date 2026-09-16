@@ -30,14 +30,12 @@ export function Hero({ content, stats = [] }: HeroProps) {
             {eyebrow}
           </p>
           <h1 id="hero-title" className="h1-huge mt-3 font-bold text-balance md:mt-4">
-            {headline}
+            {/* One sentence per line: never break mid-sentence when a full stop is available. */}
+            <span className="block">{headline}</span>
             {headlineAccent && (
-              <>
-                {" "}
-                <span className="bg-(image:--gradient-text-hero-accessible) bg-clip-text text-transparent">
-                  {headlineAccent}
-                </span>
-              </>
+              <span className="block bg-(image:--gradient-text-hero-accessible) bg-clip-text text-transparent">
+                {headlineAccent}
+              </span>
             )}
           </h1>
           <p className="body-large mt-4 max-w-[62ch] text-muted-foreground md:mt-6">

@@ -41,7 +41,7 @@
   --gradient-surface-dark: linear-gradient(115deg, #1f2227 0%, #2b2340 55%, #4b2f78 100%);
   --gradient-brand: linear-gradient(100deg, #fc899a 0%, #9f51ce 55%, #6c5ae6 100%);
   /* Text-safe version of the accent: both stops >= 3.2:1 on white. */
-  --gradient-brand-accessible: linear-gradient(100deg, #df657b 0%, #9b4ccd 100%);
+  --gradient-brand-accessible: linear-gradient(110deg, #e0526f 0%, #7c3fd4 100%);
 
   /* Layout */
   --spacing-container: 1260px;
@@ -52,6 +52,14 @@
 }
 
 @layer base {
+  /* Avoid single-word last lines across the site. */
+  p,
+  li,
+  dd,
+  figcaption {
+    text-wrap: pretty;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);

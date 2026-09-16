@@ -24,29 +24,29 @@ export function BeforeAfter({ content, labels, id = "prima-dopo" }: BeforeAfterP
         <div>
           <div
             aria-hidden="true"
-            className="hidden border-b border-border pb-4 md:grid md:grid-cols-2 md:gap-8"
+            className="hidden pb-3 md:grid md:grid-cols-2 md:gap-6"
           >
             <span className="label-medium font-medium uppercase text-muted-foreground">
               {labels.before}
             </span>
-            <span className="label-medium font-semibold uppercase text-foreground">
+            <span className="label-medium bg-(image:--gradient-brand-accessible) bg-clip-text font-semibold uppercase text-transparent">
               {labels.after}
             </span>
           </div>
 
-          <ul className="flex flex-col gap-4 md:gap-0">
+          <ul className="flex flex-col gap-3 md:gap-4">
             {content.rows.map((row, index) => (
               <li
                 key={`${index}-${row.before}`}
-                className="grid overflow-hidden rounded-lg border border-border bg-card md:grid-cols-2 md:gap-8 md:rounded-none md:border-0 md:border-b md:bg-transparent md:py-6"
+                className="grid gap-3 md:grid-cols-2 md:gap-6"
               >
-                <div className="flex flex-col gap-1 p-4 md:p-0">
+                <div className="flex flex-col gap-1 rounded-xl border border-border bg-card p-5">
                   <span className="label-small font-medium uppercase text-muted-foreground md:sr-only">
                     {labels.before}
                   </span>
                   <p className="text-muted-foreground">{row.before}</p>
                 </div>
-                <div className="flex flex-col gap-1 border-t border-border p-4 md:border-0 md:p-0">
+                <div className="flex flex-col gap-1 rounded-xl border border-tropical-indigo/30 bg-(image:--gradient-brand)/8 p-5">
                   <span className="flex items-center gap-2 label-small font-semibold uppercase text-foreground md:sr-only">
                     <span
                       aria-hidden="true"

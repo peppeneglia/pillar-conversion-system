@@ -39,26 +39,29 @@ export function Faq({ items, title, id = "faq" }: FaqProps) {
           {items.map((item) => (
             <details
               key={item.question}
-              className="group rounded-xl border border-border bg-card"
+              className="group overflow-hidden rounded-xl border border-border bg-card open:border-tropical-indigo/40 open:shadow-sm"
             >
-              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 rounded-xl px-4 py-4 font-medium transition-colors duration-150 outline-offset-2 hover:bg-muted focus-visible:outline-2 focus-visible:outline-primary active:bg-border motion-reduce:transition-none md:px-6 [&::-webkit-details-marker]:hidden">
-                <span>{item.question}</span>
-                <svg
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 px-5 py-4 font-medium transition-colors duration-150 -outline-offset-2 hover:bg-muted focus-visible:outline-2 focus-visible:outline-primary active:bg-border motion-reduce:transition-none md:px-6 md:py-5 [&::-webkit-details-marker]:hidden">
+                <span className="text-balance">{item.question}</span>
+                <span
                   aria-hidden="true"
-                  viewBox="0 0 20 20"
-                  className="size-5 shrink-0 transition-transform duration-150 group-open:rotate-180 motion-reduce:transition-none"
+                  className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-foreground transition-transform duration-150 group-open:rotate-180 motion-reduce:transition-none"
                 >
-                  <path
-                    d="M5 7.5l5 5 5-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                  <svg viewBox="0 0 20 20" className="size-4">
+                    <path
+                      d="M5 7.5l5 5 5-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
               </summary>
-              <p className="px-4 pb-4 text-muted-foreground md:px-6 md:pb-6">{item.answer}</p>
+              <div className="border-t border-border px-5 py-4 md:px-6 md:py-5">
+                <p className="text-muted-foreground">{item.answer}</p>
+              </div>
             </details>
           ))}
         </div>
