@@ -60,9 +60,6 @@ export function SiteFooter({
               />
             </div>
 
-            {showDisclaimer && (
-              <p className="max-w-md text-sm text-on-dark-muted">{content.disclaimer}</p>
-            )}
           </div>
 
           <div className="flex flex-col gap-4 md:items-end">
@@ -77,6 +74,11 @@ export function SiteFooter({
               >
                 {content.cta.label}
               </Button>
+            )}
+            {showDisclaimer && (
+              <p className="max-w-md text-sm text-on-dark-muted md:mt-auto md:text-right">
+                {content.disclaimer}
+              </p>
             )}
           </div>
         </div>
