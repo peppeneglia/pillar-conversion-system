@@ -167,7 +167,7 @@ export default async function DocumentPage() {
                               </span>
                             )}
                           </p>
-                          <p className="text-muted-foreground">{hero.subheadline}</p>
+                          <p className="text-muted-foreground">{hero.subheadline.join(" ")}</p>
                         </div>
 
                         <Button

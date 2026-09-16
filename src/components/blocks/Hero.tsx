@@ -23,7 +23,7 @@ export function Hero({ content, stats = [] }: HeroProps) {
 
   return (
     <section data-surface="background" aria-labelledby="hero-title" className="pt-6 pb-12 md:pt-16 md:pb-20">
-      <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:gap-16">
+      <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16">
         <div className="flex flex-col items-start">
           <p className="flex items-center gap-2 label-medium font-semibold uppercase text-muted-foreground">
             <span aria-hidden="true" className="size-2 rounded-full bg-(image:--gradient-brand)" />
@@ -38,9 +38,13 @@ export function Hero({ content, stats = [] }: HeroProps) {
               </span>
             )}
           </h1>
-          <p className="body-large mt-4 max-w-[62ch] text-muted-foreground md:mt-6">
-            {subheadline}
-          </p>
+          <div className="mt-4 flex flex-col gap-1 md:mt-6">
+            {subheadline.map((line) => (
+              <p key={line} className="body-large text-muted-foreground">
+                {line}
+              </p>
+            ))}
+          </div>
           <div className="mt-5 flex w-full flex-col gap-3 md:mt-8 md:w-auto md:flex-row">
             <Button href={primaryCta.target} data-track-cta="hero_primary" className="w-full md:w-auto">
               {primaryCta.label}
@@ -61,11 +65,11 @@ export function Hero({ content, stats = [] }: HeroProps) {
 
         {stats.length > 0 && (
           // Contrast on the dark surface: pink 7.2:1, purple 4.7:1 for these large figures.
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-(image:--gradient-surface-dark) p-1 shadow-lg">
+          <dl className="grid grid-cols-2 gap-2 rounded-2xl bg-(image:--gradient-surface-dark) p-3 shadow-lg md:gap-3 md:p-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col-reverse gap-1 p-5 md:p-6">
-                <dt className="text-sm text-on-dark-muted">{stat.label}</dt>
-                <dd className="h3 bg-(image:--gradient-brand) bg-clip-text font-bold text-transparent">
+              <div key={stat.label} className="flex flex-col-reverse gap-1 p-4 md:p-6">
+                <dt className="body-large text-on-dark-muted">{stat.label}</dt>
+                <dd className="h1 bg-(image:--gradient-brand) bg-clip-text font-bold text-transparent">
                   {stat.value}
                 </dd>
               </div>
