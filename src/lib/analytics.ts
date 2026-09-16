@@ -2,8 +2,8 @@ import type { LeadFormPosition, LeadFormVariant } from "@/components/blocks/Lead
 import type { LeadFormFieldKey, Stage } from "@/content/types";
 import { sanitizeText } from "@/lib/validation";
 
-// First-party event layer: no third-party scripts, no network. Events go to the
-// console and to an in-memory store read by the debug panel.
+// First-party event layer: no third-party scripts, no network. Events are logged to
+// the console, ready to be forwarded to a real endpoint later.
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
 export type UtmKey = (typeof UTM_KEYS)[number];
@@ -11,7 +11,6 @@ export type Utm = Partial<Record<UtmKey, string>>;
 
 export type CtaPosition =
   | "header_primary"
-  | "header_secondary"
   | "hero_primary"
   | "hero_secondary"
   | "mid"
@@ -31,18 +30,8 @@ export type AnalyticsEvents = {
 
 export type AnalyticsEventName = keyof AnalyticsEvents;
 
-export type TrackedEvent = {
-  [E in AnalyticsEventName]: {
-    id: number;
-    name: E;
-    payload: AnalyticsEvents[E];
-    timestamp: number;
-  };
-}[AnalyticsEventName];
-
 export const CTA_POSITIONS: readonly CtaPosition[] = [
   "header_primary",
-  "header_secondary",
   "hero_primary",
   "hero_secondary",
   "mid",
@@ -52,13 +41,8 @@ export const CTA_POSITIONS: readonly CtaPosition[] = [
 export const SCROLL_DEPTHS: readonly ScrollDepth[] = [25, 50, 75, 100];
 
 const UTM_STORAGE_KEY = "pcs:utm";
-const DEBUG_STORAGE_KEY = "pcs:debug";
-const NO_EVENTS: TrackedEvent[] = [];
 
-let events: TrackedEvent[] = NO_EVENTS;
-let nextId = 1;
 let utmCache: Utm | null = null;
-const listeners = new Set<() => void>();
 
 function readSession(key: string): string | null {
   try {
@@ -78,27 +62,7 @@ function writeSession(key: string, value: string): void {
 
 export function track<E extends AnalyticsEventName>(name: E, payload: AnalyticsEvents[E]): void {
   if (typeof window === "undefined") return;
-
-  const event = { id: nextId++, name, payload, timestamp: Date.now() } as TrackedEvent;
-  // A new array on every event keeps useSyncExternalStore snapshots comparable by reference.
-  events = [...events, event];
   console.info(`[analytics] ${name}`, payload);
-  listeners.forEach((listener) => listener());
-}
-
-export function subscribeToEvents(listener: () => void): () => void {
-  listeners.add(listener);
-  return () => {
-    listeners.delete(listener);
-  };
-}
-
-export function getEventsSnapshot(): TrackedEvent[] {
-  return events;
-}
-
-export function getServerEventsSnapshot(): TrackedEvent[] {
-  return NO_EVENTS;
 }
 
 function parseStoredUtm(raw: string): Utm | null {
@@ -144,14 +108,3 @@ export function getSessionUtm(): Utm {
   return utm;
 }
 
-/** On in development; in production only after `?debug=1`, remembered for the session. */
-export function isDebugEnabled(): boolean {
-  if (process.env.NODE_ENV === "development") return true;
-  if (typeof window === "undefined") return false;
-
-  if (new URLSearchParams(window.location.search).get("debug") === "1") {
-    writeSession(DEBUG_STORAGE_KEY, "1");
-    return true;
-  }
-  return readSession(DEBUG_STORAGE_KEY) === "1";
-}

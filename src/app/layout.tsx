@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
-import { AnalyticsDebugPanel } from "@/components/analytics/AnalyticsDebugPanel";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -26,10 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="it"
       className={`${spaceGrotesk.variable} font-sans h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {children}
-        <AnalyticsDebugPanel />
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
