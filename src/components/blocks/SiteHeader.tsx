@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Wordmark } from "@/components/blocks/Wordmark";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import type { CtaConfig, FooterLink, UiLabels } from "@/content/types";
@@ -11,28 +10,23 @@ export type SiteHeaderProps = {
   cta?: CtaConfig;
   /** Page links, used on the index page to reach the landings. */
   nav?: FooterLink[];
+  /** Spell out "Pillar Conversion System" next to the logo. */
+  fullWordmark?: boolean;
   sticky?: boolean;
 };
 
-export function SiteHeader({ ui, cta, nav = [], sticky = false }: SiteHeaderProps) {
+export function SiteHeader({
+  ui,
+  cta,
+  nav = [],
+  fullWordmark = false,
+  sticky = false,
+}: SiteHeaderProps) {
   return (
     <header className={cn("bg-background pt-3 select-none", sticky && "sticky top-0 z-40")}>
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-(image:--gradient-surface-dark) px-4 py-3 shadow-lg md:px-6">
-          <Link
-            href="/"
-            aria-label={ui.homeLink}
-            className="flex min-h-11 items-center rounded-md outline-offset-4 focus-visible:outline-2 focus-visible:outline-on-dark"
-          >
-            <Image
-              src="/logo.svg"
-              alt="Pillar"
-              width={128}
-              height={40}
-              priority
-              className="brightness-0 invert"
-            />
-          </Link>
+          <Wordmark ui={ui} full={fullWordmark} />
 
           {nav.length > 0 && (
             <nav aria-label={ui.footerNav} className="flex flex-1 justify-end">

@@ -33,6 +33,7 @@ export default async function DocumentPage() {
     <>
       <SiteHeader
         ui={site.ui}
+        fullWordmark
         nav={stages.items.map((item) => ({
           label: item.name,
           href: `/lp/${item.stage}`,
