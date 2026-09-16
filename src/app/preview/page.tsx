@@ -17,7 +17,7 @@ import { getPreferences, getSiteContent } from "@/lib/server-preferences";
 // Component preview: blocks, design tokens and primitives. noindex is inherited from the root layout.
 
 export const metadata: Metadata = {
-  title: "Pillar Conversion System: anteprima componenti",
+  title: "Pillar Conversion System: design system",
 };
 
 type Swatch = {

@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import type { TrustBar as TrustBarContent } from "@/content/types";
+import { cn } from "@/lib/cn";
 
 export type TrustBarProps = {
   content: TrustBarContent;
@@ -14,7 +15,12 @@ export function TrustBar({ content, showStats = true, id = "trust-bar" }: TrustB
   return (
     <section id={id} aria-labelledby={titleId} className="scroll-mt-24 py-10 md:py-14">
       <Container>
-        <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card px-6 py-8 md:flex-row md:items-center md:gap-10 md:px-10">
+        <div
+          className={cn(
+            "flex flex-col gap-6 rounded-2xl border border-border bg-card px-6 py-8 md:px-10",
+            !showStats && "md:flex-row md:items-center md:gap-10",
+          )}
+        >
           <h2
             id={titleId}
             className="h4 max-w-xs shrink-0 font-semibold text-pretty text-muted-foreground"
@@ -23,7 +29,7 @@ export function TrustBar({ content, showStats = true, id = "trust-bar" }: TrustB
           </h2>
 
           {showStats && (
-            <dl className="grid flex-1 grid-cols-2 gap-6 lg:grid-cols-4">
+            <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
               {content.stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col-reverse gap-1">
                   <dt className="text-sm text-muted-foreground">{stat.label}</dt>
@@ -36,7 +42,12 @@ export function TrustBar({ content, showStats = true, id = "trust-bar" }: TrustB
             </dl>
           )}
 
-          <ul className="flex flex-1 flex-wrap items-center gap-x-8 gap-y-4 md:justify-end">
+          <ul
+            className={cn(
+              "flex flex-wrap items-center gap-x-8 gap-y-4",
+              showStats ? "border-t border-border pt-6" : "flex-1 md:justify-end",
+            )}
+          >
             {content.clients.map((client) => (
               <li key={client} className="flex items-center gap-2">
                 <span
