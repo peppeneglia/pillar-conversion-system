@@ -23,7 +23,7 @@ export function TrustBar({ content, showStats = true, id = "trust-bar" }: TrustB
         >
           <h2
             id={titleId}
-            className="h4 max-w-xs shrink-0 font-semibold text-pretty text-muted-foreground"
+            className="h4 shrink-0 font-semibold text-muted-foreground md:whitespace-nowrap"
           >
             {content.title}
           </h2>

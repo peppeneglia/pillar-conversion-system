@@ -46,16 +46,17 @@ export default async function StagePage({ params, searchParams }: PageProps<"/lp
     <main className="flex flex-1 flex-col">
       <LandingAnalytics stage={stage} variant={variant} />
       <Hero content={content.hero} stats={site.trustBar.stats} />
-      <TrustBar content={site.trustBar} showStats={false} />
       <BeforeAfter id="prima-dopo" content={content.beforeAfter} labels={site.beforeAfterLabels} />
       <Audience content={content.audience} />
       {content.team && <Audience id="team" content={content.team} background="accent" />}
+      <TrustBar content={site.trustBar} showStats={false} />
       <Testimonials
         testimonials={getTestimonialsForStage(site, stage)}
         title={site.sectionTitles.testimonials}
       />
       <Faq id="faq" items={content.faq} title={site.sectionTitles.faq} />
-      <Section background="muted">
+      {/* At least one screen tall: scrolling to the form never reveals the footer below it. */}
+      <Section background="muted" className="min-h-svh">
         <Container>
           <div className="mx-auto max-w-3xl">
             <LeadForm
