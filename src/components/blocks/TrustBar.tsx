@@ -20,7 +20,7 @@ export function TrustBar({ content, id = "trust-bar" }: TrustBarProps) {
           {content.title}
         </h2>
 
-        <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
           {content.stats.map((stat) => (
             <div key={stat.label} className="flex flex-col-reverse gap-1">
               <dt className="text-sm text-muted-foreground">{stat.label}</dt>

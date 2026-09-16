@@ -6,21 +6,14 @@ import type {
   TrustBar,
 } from "./types";
 
+// Figures published by Pillar on pillar.it, read on 14/09/2026. Not independently verified.
 export const trustBar: TrustBar = {
-  title: "[TODO: titolo breve della trust bar, senza numeri non verificati]",
+  title: "Perché le imprese edili scelgono Pillar",
   stats: [
-    {
-      value: "[TODO: primo numero verificato dal sito Pillar]",
-      label: "[TODO: cosa misura il primo numero]",
-    },
-    {
-      value: "[TODO: secondo numero verificato dal sito Pillar]",
-      label: "[TODO: cosa misura il secondo numero]",
-    },
-    {
-      value: "[TODO: terzo numero verificato dal sito Pillar]",
-      label: "[TODO: cosa misura il terzo numero]",
-    },
+    { value: "700+", label: "imprese attive" },
+    { value: "2000+", label: "progetti gestiti" },
+    { value: "14h", label: "risparmiate a settimana" },
+    { value: "4.8/5", label: "valutazione media" },
   ],
   // Companies quoted in the testimonials.
   clients: ["Serra SRL", "B.C. Servizi", "MAC SRL", "Euroservice"],
@@ -32,8 +25,8 @@ export const beforeAfterLabels: BeforeAfterLabels = {
 };
 
 export const sectionTitles: SectionTitles = {
-  testimonials: "[TODO: titolo della sezione testimonianze]",
-  faq: "[TODO: titolo della sezione domande frequenti]",
+  testimonials: "Cosa dicono le imprese edili che usano Pillar",
+  faq: "Domande frequenti",
 };
 
 export const leadFormCopy: LeadFormCopy = {
@@ -74,21 +67,27 @@ export const leadFormCopy: LeadFormCopy = {
     choice: "Seleziona un'opzione per continuare.",
   },
   confirmation: {
-    title: "[TODO: titolo di conferma invio, senza promettere tempi di risposta]",
-    body: "[TODO: testo che spiega cosa succede dopo la richiesta]",
+    title: "Richiesta inviata",
+    body: "Ti ricontattiamo per fissare la videochiamata.",
   },
 };
 
 /** Privacy note shown under every lead form. */
 export const privacyNote = "I tuoi dati servono solo a organizzare la demo. Nessuna newsletter.";
 
+/** Shown in the footer and, shortened, as the header badge. */
+export const disclaimer =
+  "Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.";
+
+export const conceptBadge = "Concept non ufficiale";
+
 export const footer: FooterContent = {
-  disclaimer: "Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.",
+  disclaimer,
   cta: {
     label: "Prenota una demo",
     target: "#form",
   },
-  note: "[TODO: nota breve sull'autore del concept e sullo scopo del progetto]",
+  note: disclaimer,
   links: [
     {
       label: "[TODO: etichetta del link al sito ufficiale o al portfolio]",
