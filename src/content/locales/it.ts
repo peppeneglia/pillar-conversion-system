@@ -1,4 +1,5 @@
 import { documentContent } from "../document";
+import { projectContent } from "../project";
 import {
   beforeAfterLabels,
   footer,
@@ -17,6 +18,7 @@ import type { SiteContent } from "../types";
 export const it: SiteContent = {
   ui: {
     homeLink: "Pillar Conversion System, vai alla home",
+    wordmark: "Conversion System",
     footerNav: "Sezioni del progetto",
     localeLabel: "Lingua",
     localeNames: { it: "Italiano", en: "English" },
@@ -31,6 +33,7 @@ export const it: SiteContent = {
   footer,
   notFound: notFoundContent,
   document: documentContent,
+  project: projectContent,
   stages: { margine, valutazione, operativo },
   testimonials,
 };

@@ -7,6 +7,7 @@ const privacyNote = "Your details are only used to arrange the demo. No newslett
 export const en: SiteContent = {
   ui: {
     homeLink: "Pillar Conversion System, go to the home page",
+    wordmark: "Conversion System",
     footerNav: "Project sections",
     localeLabel: "Language",
     localeNames: { it: "Italiano", en: "English" },
@@ -76,22 +77,85 @@ export const en: SiteContent = {
   },
   headerCta: { label: "Book a demo", target: "#form" },
   footer: {
+    description:
+      "A conversion concept: three landing pages for three awareness stages of paid traffic, with the events to measure them.",
     disclaimer:
       "Unofficial concept made as portfolio work. Not affiliated with Pillar Srl.",
     cta: { label: "Book a demo", target: "#form" },
     note: "Unofficial concept made as portfolio work. Not affiliated with Pillar Srl.",
+    // First row: the three project pages. Second row: the three landings.
     links: [
-      { label: "Document", href: "/" },
+      { label: "Home", href: "/" },
+      { label: "Project", href: "/progetto" },
+      { label: "Design system", href: "/preview" },
       { label: "Margin landing", href: "/lp/margine" },
       { label: "Software landing", href: "/lp/valutazione" },
       { label: "Field work landing", href: "/lp/operativo" },
-      { label: "Component preview", href: "/preview" },
     ],
   },
   notFound: {
     title: "Page not found",
     body: "This address does not match any page of the concept.",
     cta: { label: "Back to the document", target: "/" },
+  },
+  project: {
+    meta: {
+      title: "Pillar: the project",
+      description:
+        "How the Pillar Conversion System is built: why three landing pages, what the repository holds, and what is still open.",
+    },
+    eyebrow: "The project",
+    title: "What the Pillar Conversion System is",
+    lede: "A conversion optimisation exercise, built end to end: copy, design system, pages and the tools to measure them. Pillar did not commission it and is not affiliated with it.",
+    sections: [
+      {
+        title: "Where it starts",
+        paragraphs: [
+          "Pillar buys traffic on two channels with different formats, video on Meta and ads on Google, and sends all of it to a single landing page.",
+          "But the person clicking is not one person: some have not framed the problem yet, some are comparing systems after trying one, and some will use the software without buying it. The message that convinces one is noise for the other two.",
+        ],
+      },
+      {
+        title: "What it proposes",
+        paragraphs: [
+          "Three landing pages, one per awareness stage, with the same block structure and different content: hero promise, before and after comparison, a section addressed to the reader, filtered testimonials, frequently asked questions and a form.",
+          "The calls to action change order according to who decides: on the field work landing the first action is to see how it works, not to book a demo, because the reader does not sign the contract.",
+        ],
+      },
+      {
+        title: "How it is built",
+        paragraphs: [
+          "All copy lives in typed dictionaries kept apart from the components, in Italian and English: if a sentence is missing in one language, the project does not compile. Quotes stay in their original language, because they are real statements.",
+          "Language and theme are choices stored in a cookie and applied by the server, so nothing flashes on load. Italian and the light theme are the starting values, whatever the system asks for.",
+          "Conversion events are defined in the code and written to the console: no third-party scripts, no data sent anywhere. The form validates and confirms, but sends nothing.",
+        ],
+      },
+      {
+        title: "Rules I set myself",
+        paragraphs: [
+          "No invented numbers and no invented quotes: the figures come from the Pillar website and the testimonials are reproduced word for word.",
+          "Every page is served with noindex and nofollow, so the concept never shows up in search results in place of the real site.",
+          "AA contrast throughout, every interactive element reachable by keyboard, and a touch target of at least 44 pixels.",
+        ],
+      },
+    ],
+    stack: {
+      title: "Stack",
+      items: [
+        { label: "Framework", value: "Next.js 16, App Router, React 19" },
+        { label: "Language", value: "TypeScript in strict mode" },
+        { label: "Styling", value: "Tailwind 4, brand tokens in CSS" },
+        { label: "Added dependencies", value: "None" },
+      ],
+    },
+    status: {
+      title: "What is still open",
+      items: [
+        "The form posts to no endpoint: it only shows the confirmation.",
+        "The events are not connected to an analytics tool.",
+        "The three landing pages have never been tried on real traffic.",
+      ],
+    },
   },
   document: {
     meta: {

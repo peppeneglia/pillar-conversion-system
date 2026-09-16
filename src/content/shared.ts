@@ -93,17 +93,21 @@ export const notFoundContent: NotFoundContent = {
 };
 
 export const footer: FooterContent = {
+  description:
+    "Un concept di ottimizzazione della conversione: tre landing per tre stadi di consapevolezza del traffico a pagamento, con gli eventi per misurarle.",
   disclaimer,
   cta: {
     label: "Prenota una demo",
     target: "#form",
   },
   note: disclaimer,
+  // First row: the three project pages. Second row: the three landings.
   links: [
-    { label: "Documento", href: "/" },
+    { label: "Home", href: "/" },
+    { label: "Progetto", href: "/progetto" },
+    { label: "Design system", href: "/preview" },
     { label: "Landing marginalità", href: "/lp/margine" },
     { label: "Landing gestionale", href: "/lp/valutazione" },
     { label: "Landing operativo", href: "/lp/operativo" },
-    { label: "Anteprima componenti", href: "/preview" },
   ],
 };

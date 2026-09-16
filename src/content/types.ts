@@ -108,6 +108,8 @@ export type NotFoundContent = {
 };
 
 export type FooterContent = {
+  /** One paragraph under the logo, saying what this project is. */
+  description: string;
   disclaimer: string;
   /** Rendered only on landing pages, where `#form` exists. */
   cta: CtaConfig;
@@ -214,11 +216,35 @@ export type DocumentContent = {
   };
 };
 
+export type ProjectContent = {
+  meta: {
+    title: string;
+    description: string;
+  };
+  eyebrow: string;
+  title: string;
+  lede: string;
+  sections: {
+    title: string;
+    paragraphs: string[];
+  }[];
+  stack: {
+    title: string;
+    items: { label: string; value: string }[];
+  };
+  status: {
+    title: string;
+    items: string[];
+  };
+};
+
 export type Locale = "it" | "en";
 
 /** Labels that live in components rather than in page copy. */
 export type UiLabels = {
   homeLink: string;
+  /** Second half of the wordmark, next to the logo. */
+  wordmark: string;
   footerNav: string;
   localeLabel: string;
   localeNames: Record<Locale, string>;
@@ -237,6 +263,7 @@ export type SiteContent = {
   footer: FooterContent;
   notFound: NotFoundContent;
   document: DocumentContent;
+  project: ProjectContent;
   stages: Record<Stage, StageContent>;
   testimonials: Testimonial[];
 };
