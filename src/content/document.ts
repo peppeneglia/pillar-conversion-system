@@ -56,36 +56,41 @@ export const documentContent: DocumentContent = {
   },
   measurement: {
     title: "Cosa misurerei",
-    body: "Ogni domanda ha una sola metrica primaria. Gli eventi sono già definiti nel codice.",
+    body: "Una domanda alla volta, con una sola metrica primaria. Sotto ogni metrica c'è la lettura: cosa significherebbe un numero alto o basso, e quale decisione ne segue.",
     metricLabel: "Metrica primaria",
-    eventsLabel: "Eventi",
+    readingLabel: "Come si legge",
+    eventsLabel: "Eventi che la alimentano",
     rows: [
       {
         question: "Separare gli stadi migliora la conversione?",
         metric: "Invii del form su visualizzazioni di pagina, per stadio e per sorgente UTM.",
+        reading: "Se una landing converte più delle altre a parità di sorgente, il messaggio giusto per quello stadio esiste e va portato anche sulle altre. Se convertono tutte uguale, la separazione non sta pagando e il problema è altrove.",
         events: ["page_view", "form_submit"],
       },
       {
         question: "La promessa dell'hero trattiene chi arriva?",
         metric: "Clic sulle CTA dell'hero su visualizzazioni di pagina.",
+        reading: "Pochi clic con molte visite significa che la promessa in apertura non parla a chi arriva da quell'annuncio: si riscrive l'hero, non la pagina intera.",
         events: ["page_view", "cta_click"],
       },
       {
         question: "Chi arriva legge fino al form?",
         metric: "Form visti su visualizzazioni di pagina, letto insieme alla profondità di scroll.",
+        reading: "Se lo scroll si ferma prima del form, il problema è la lunghezza o l'ordine dei blocchi. Se il form si vede ma non parte, il problema è il form.",
         events: ["form_view", "scroll_depth"],
       },
       {
         question: "Il form a step converte più del form breve?",
         metric: "Invii del form su form iniziati, per variante.",
+        reading: "Gli step chiedono meno in una volta sola, ma aggiungono passaggi. Il confronto dice quale delle due cose pesa di più, e a quale passo si perde la gente.",
         events: ["form_start", "form_step", "form_submit"],
       },
       {
         question: "Chi non decide porta la demo a chi decide?",
         metric: "Invii del form sui clic della CTA principale nella landing operativo.",
+        reading: "Chi legge non firma il contratto. Se guarda il confronto ma non richiede la demo, va cambiato ciò che gli chiediamo di fare: passare la pagina a chi decide, invece di prenotare lui.",
         events: ["cta_click", "form_submit"],
       },
     ],
-    note: "Nessuno strumento di analisi è collegato: gli eventi finiscono in console e nel pannello di debug, attivabile con ?debug=1.",
   },
 };
