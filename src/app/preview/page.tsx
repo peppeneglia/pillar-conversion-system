@@ -25,7 +25,7 @@ import {
 // Component preview: blocks, design tokens and primitives. noindex is inherited from the root layout.
 
 export const metadata: Metadata = {
-  title: "Anteprima componenti — concept non ufficiale",
+  title: "Pillar Conversion System: anteprima componenti",
 };
 
 // Sample data: the "valutazione" stage (final copy) and every testimonial.
