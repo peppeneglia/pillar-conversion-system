@@ -24,8 +24,9 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
           {testimonials.map((testimonial, index) => {
             // The first quote sits on the dark brand surface.
             const featured = index === 0;
+            const fullWidth = featured && testimonials.length >= 3;
             return (
-              <li key={testimonial.id} className="flex">
+              <li key={testimonial.id} className={cn("flex", fullWidth && "md:col-span-2")}>
                 <figure
                   className={cn(
                     "flex w-full flex-col justify-between gap-6 rounded-2xl p-6 md:p-8",
@@ -35,7 +36,12 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
                   )}
                 >
                   <blockquote>
-                    <p className={cn("text-pretty", featured ? "h4 font-medium" : "body-large")}>
+                    <p
+                      className={cn(
+                        "text-pretty",
+                        fullWidth ? "h3 font-medium" : featured ? "h4 font-medium" : "body-large",
+                      )}
+                    >
                       &quot;{testimonial.quote}&quot;
                     </p>
                   </blockquote>
