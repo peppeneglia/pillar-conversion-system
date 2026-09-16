@@ -271,10 +271,6 @@ export type AboutContent = {
   title: string;
   /** One paragraph per item. */
   intro: string[];
-  method: {
-    title: string;
-    paragraphs: string[];
-  };
   experience: {
     title: string;
     entries: AboutEntry[];
@@ -282,10 +278,6 @@ export type AboutContent = {
   education: {
     title: string;
     entries: AboutEntry[];
-  };
-  why: {
-    title: string;
-    paragraphs: string[];
   };
 };
 

@@ -13,21 +13,9 @@ export const metadata: Metadata = {
   description: aboutContent.meta.description,
 };
 
-function Paragraphs({ items }: { items: string[] }) {
-  return (
-    <div className="flex max-w-[70ch] flex-col gap-4">
-      {items.map((paragraph) => (
-        <p key={paragraph} className="text-muted-foreground">
-          {paragraph}
-        </p>
-      ))}
-    </div>
-  );
-}
-
 function EntryList({ entries }: { entries: AboutEntry[] }) {
   return (
-    <ol className="flex flex-col divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card">
+    <ol className="flex flex-col divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
       {entries.map((entry) => (
         <li key={`${entry.title} ${entry.organisation}`} className="flex flex-col gap-2 p-5 md:p-6">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
@@ -77,16 +65,7 @@ export default async function AboutPage() {
           </Container>
         </Section>
 
-        <Section background="card" aria-labelledby="about-method">
-          <Container className="flex flex-col gap-6">
-            <h2 id="about-method" className="h2 font-bold text-pretty">
-              {about.method.title}
-            </h2>
-            <Paragraphs items={about.method.paragraphs} />
-          </Container>
-        </Section>
-
-        <Section aria-labelledby="about-experience">
+        <Section background="card" aria-labelledby="about-experience">
           <Container className="grid gap-8 md:grid-cols-2 md:gap-12">
             <div className="flex flex-col gap-4">
               <h2 id="about-experience" className="h2 font-bold text-pretty">
@@ -98,15 +77,6 @@ export default async function AboutPage() {
               <h2 className="h2 font-bold text-pretty">{about.education.title}</h2>
               <EntryList entries={about.education.entries} />
             </div>
-          </Container>
-        </Section>
-
-        <Section background="card" aria-labelledby="about-why">
-          <Container className="flex flex-col gap-6">
-            <h2 id="about-why" className="h2 font-bold text-pretty">
-              {about.why.title}
-            </h2>
-            <Paragraphs items={about.why.paragraphs} />
           </Container>
         </Section>
       </main>
