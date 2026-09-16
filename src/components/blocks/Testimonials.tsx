@@ -39,7 +39,7 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
                     <p
                       className={cn(
                         "text-pretty",
-                        fullWidth ? "h3 font-medium" : featured ? "h4 font-medium" : "body-large",
+                        fullWidth ? "h2 font-medium" : featured ? "h3 font-medium" : "body-large",
                       )}
                     >
                       &quot;{testimonial.quote}&quot;
@@ -64,23 +64,16 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
                       ))}
                     </div>
 
+                    {/* One line per person: name, role and company never split. */}
                     <div className="flex min-w-0 flex-col">
                       {testimonial.people.map((person) => (
-                        <p key={person.name} className="text-sm">
+                        <p key={person.name} className="text-sm sm:whitespace-nowrap">
                           <span className="font-semibold">{person.name}</span>
                           <span className={featured ? "text-on-dark-muted" : "text-muted-foreground"}>
-                            , {person.role}
+                            , {person.role} · {testimonial.company}
                           </span>
                         </p>
                       ))}
-                      <p
-                        className={cn(
-                          "text-sm font-medium",
-                          featured ? "text-on-dark-muted" : "text-muted-foreground",
-                        )}
-                      >
-                        {testimonial.company}
-                      </p>
                     </div>
                   </figcaption>
                 </figure>
