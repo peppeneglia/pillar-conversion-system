@@ -1,14 +1,24 @@
 import { SiteFooter } from "@/components/blocks/SiteFooter";
 import { SiteHeader } from "@/components/blocks/SiteHeader";
-import { footer, headerCta } from "@/content";
+import { getPreferences } from "@/lib/server-preferences";
+import { getContent } from "@/content";
 
 // noindex, nofollow is inherited from the root layout metadata.
-export default function LandingLayout({ children }: LayoutProps<"/lp">) {
+export default async function LandingLayout({ children }: LayoutProps<"/lp">) {
+  const { locale, theme } = await getPreferences();
+  const content = getContent(locale);
+
   return (
     <>
-      <SiteHeader cta={headerCta} sticky />
+      <SiteHeader ui={content.ui} cta={content.headerCta} sticky />
       {children}
-      <SiteFooter content={footer} showCta />
+      <SiteFooter
+        content={content.footer}
+        ui={content.ui}
+        locale={locale}
+        theme={theme}
+        showCta
+      />
     </>
   );
 }

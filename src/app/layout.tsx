@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import { getPreferences } from "@/lib/server-preferences";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -19,10 +20,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const { locale, theme } = await getPreferences();
+
   return (
     <html
-      lang="it"
+      lang={locale}
+      data-theme={theme}
       className={`${spaceGrotesk.variable} font-sans h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

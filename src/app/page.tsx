@@ -4,27 +4,34 @@ import { SiteHeader } from "@/components/blocks/SiteHeader";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { documentContent, footer, stageContent } from "@/content";
+import { getSiteContent } from "@/lib/server-preferences";
+import { getPreferences } from "@/lib/server-preferences";
 
-const { meta, traffic, stages, problem, landings, measurement } = documentContent;
-
-export const metadata: Metadata = {
-  title: "Pillar Conversion System",
-  description: meta.description,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { content } = await getSiteContent();
+  return {
+    title: "Pillar Conversion System",
+    description: content.document.meta.description,
+  };
+}
 
 function SectionTitle({ id, children }: { id: string; children: string }) {
   return (
-    <h2 id={id} className="h2 font-bold text-balance">
+    <h2 id={id} className="h2 font-bold text-pretty">
       {children}
     </h2>
   );
 }
 
-export default function DocumentPage() {
+export default async function DocumentPage() {
+  const { locale, theme } = await getPreferences();
+  const { content: site } = await getSiteContent();
+  const documentContent = site.document;
+  const { traffic, stages, problem, landings, measurement } = documentContent;
+
   return (
     <>
-      <SiteHeader />
+      <SiteHeader ui={site.ui} />
       <main className="flex flex-1 flex-col">
         <Section className="pt-6 pb-12 md:pt-12 md:pb-16" aria-labelledby="document-title">
           <Container className="flex flex-col gap-6">
@@ -32,7 +39,7 @@ export default function DocumentPage() {
               <span aria-hidden="true" className="size-2 rounded-full bg-(image:--gradient-brand)" />
               {documentContent.eyebrow}
             </p>
-            <h1 id="document-title" className="h1-huge font-bold text-balance">
+            <h1 id="document-title" className="h1-huge font-bold text-pretty">
               {documentContent.title}
             </h1>
             <p className="body-large max-w-[70ch] text-muted-foreground">{documentContent.lede}</p>
@@ -109,7 +116,7 @@ export default function DocumentPage() {
           <Container className="flex flex-col gap-4">
             <SectionTitle id="oggi">{problem.title}</SectionTitle>
             {problem.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="body-large max-w-[70ch] text-light-gray">
+              <p key={paragraph} className="body-large max-w-[70ch] text-on-dark-muted">
                 {paragraph}
               </p>
             ))}
@@ -125,7 +132,7 @@ export default function DocumentPage() {
 
             <ul className="grid gap-5 md:grid-cols-3 md:gap-6">
               {stages.items.map((item) => {
-                const { hero } = stageContent[item.stage];
+                const { hero } = site.stages[item.stage];
                 return (
                   <li key={item.stage} className="flex">
                     <article className="flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
@@ -141,7 +148,7 @@ export default function DocumentPage() {
                           <p className="label-small font-semibold uppercase text-muted-foreground">
                             {landings.promiseLabel}
                           </p>
-                          <p className="h3 font-bold text-balance">
+                          <p className="h3 font-bold text-pretty">
                             <span className="block">{hero.headline}</span>
                             {hero.headlineAccent && (
                               <span className="block bg-(image:--gradient-brand-accessible) bg-clip-text text-transparent">
@@ -182,7 +189,7 @@ export default function DocumentPage() {
                   className="grid gap-6 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10 md:p-8"
                 >
                   <div className="flex flex-col gap-4">
-                    <h3 className="h4 font-bold text-balance">{row.question}</h3>
+                    <h3 className="h4 font-bold text-pretty">{row.question}</h3>
                     <div className="flex flex-col gap-2">
                       <p className="label-small font-semibold uppercase text-muted-foreground">
                         {measurement.eventsLabel}
@@ -219,7 +226,14 @@ export default function DocumentPage() {
           </Container>
         </Section>
       </main>
-      <SiteFooter content={footer} showDisclaimer showLinks />
+      <SiteFooter
+        content={site.footer}
+        ui={site.ui}
+        locale={locale}
+        theme={theme}
+        showDisclaimer
+        showLinks
+      />
     </>
   );
 }

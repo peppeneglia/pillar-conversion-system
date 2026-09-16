@@ -10,17 +10,9 @@ import { Testimonials } from "@/components/blocks/Testimonials";
 import { TrustBar } from "@/components/blocks/TrustBar";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import {
-  beforeAfterLabels,
-  getTestimonialsForStage,
-  isStage,
-  leadFormCopy,
-  sectionTitles,
-  stageContent,
-  stages,
-  trustBar,
-} from "@/content";
+import { getContent, getTestimonialsForStage, isStage, stages } from "@/content";
 import { getFormVariant } from "@/lib/form-variant";
+import { getSiteContent } from "@/lib/server-preferences";
 
 // Reading searchParams makes the route render per request: the variant is decided on the
 // server, so the first HTML already carries the right form. Only the three stages exist.
@@ -31,33 +23,38 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps<"/lp/[stage]">): Promise<Metadata> {
-  const { stage } = await params;
+  const [{ stage }, { content }] = await Promise.all([params, getSiteContent()]);
   if (!isStage(stage)) return {};
 
-  const { meta } = stageContent[stage];
+  const { meta } = content.stages[stage];
   return { title: meta.title, description: meta.description };
 }
 
 export default async function StagePage({ params, searchParams }: PageProps<"/lp/[stage]">) {
-  const [{ stage }, query] = await Promise.all([params, searchParams]);
+  const [{ stage }, query, { locale }] = await Promise.all([
+    params,
+    searchParams,
+    getSiteContent(),
+  ]);
   if (!isStage(stage)) notFound();
 
-  const content = stageContent[stage];
+  const site = getContent(locale);
+  const content = site.stages[stage];
   const variant = getFormVariant(typeof query.form === "string" ? query.form : null);
 
   return (
     <main className="flex flex-1 flex-col">
       <LandingAnalytics stage={stage} variant={variant} />
-      <Hero content={content.hero} stats={trustBar.stats} />
-      <TrustBar content={trustBar} showStats={false} />
-      <BeforeAfter id="prima-dopo" content={content.beforeAfter} labels={beforeAfterLabels} />
+      <Hero content={content.hero} stats={site.trustBar.stats} />
+      <TrustBar content={site.trustBar} showStats={false} />
+      <BeforeAfter id="prima-dopo" content={content.beforeAfter} labels={site.beforeAfterLabels} />
       <Audience content={content.audience} />
       {content.team && <Audience id="team" content={content.team} background="accent" />}
       <Testimonials
-        testimonials={getTestimonialsForStage(stage)}
-        title={sectionTitles.testimonials}
+        testimonials={getTestimonialsForStage(site, stage)}
+        title={site.sectionTitles.testimonials}
       />
-      <Faq id="faq" items={content.faq} title={sectionTitles.faq} />
+      <Faq id="faq" items={content.faq} title={site.sectionTitles.faq} />
       <Section background="muted">
         <Container>
           <div className="mx-auto max-w-3xl">
@@ -67,7 +64,7 @@ export default async function StagePage({ params, searchParams }: PageProps<"/lp
               stage={stage}
               variant={variant}
               content={content.form}
-              copy={leadFormCopy}
+              copy={site.leadForm}
             />
           </div>
         </Container>

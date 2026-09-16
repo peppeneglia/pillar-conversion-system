@@ -12,24 +12,13 @@ import { Button, type ButtonVariant } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Field } from "@/components/ui/Field";
 import { Section, type SectionBackground } from "@/components/ui/Section";
-import {
-  beforeAfterLabels,
-  footer,
-  leadFormCopy,
-  sectionTitles,
-  stageContent,
-  testimonials,
-  trustBar,
-} from "@/content";
+import { getPreferences, getSiteContent } from "@/lib/server-preferences";
 
 // Component preview: blocks, design tokens and primitives. noindex is inherited from the root layout.
 
 export const metadata: Metadata = {
   title: "Pillar Conversion System: anteprima componenti",
 };
-
-// Sample data: the "valutazione" stage (final copy) and every testimonial.
-const sample = stageContent.valutazione;
 
 type Swatch = {
   token: string;
@@ -128,18 +117,23 @@ function StateCaption({ children }: { children: string }) {
   return <span className="label-small uppercase text-muted-foreground">{children}</span>;
 }
 
-export default function Home() {
+export default async function Home() {
+  const { locale, theme } = await getPreferences();
+  const { content: site } = await getSiteContent();
+  // Sample data: the "valutazione" stage and every testimonial.
+  const sample = site.stages.valutazione;
+
   return (
     <>
-      <SiteHeader />
+      <SiteHeader ui={site.ui} />
 
       <main className="flex flex-1 flex-col">
         <Hero content={sample.hero} />
-        <TrustBar content={trustBar} />
-        <BeforeAfter content={sample.beforeAfter} labels={beforeAfterLabels} />
+        <TrustBar content={site.trustBar} />
+        <BeforeAfter content={sample.beforeAfter} labels={site.beforeAfterLabels} />
         <Audience content={sample.audience} />
         {sample.team && <Audience id="team" content={sample.team} background="accent" />}
-        <Testimonials testimonials={testimonials} title={sectionTitles.testimonials} />
+        <Testimonials testimonials={site.testimonials} title={site.sectionTitles.testimonials} />
 
         <Section background="muted">
           <Container className="grid items-start gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
@@ -147,7 +141,7 @@ export default function Home() {
               <p className="label-small font-medium uppercase text-foreground">
                 variant=&quot;single&quot; · position=&quot;hero&quot;
               </p>
-              <LeadForm content={sample.form} copy={leadFormCopy} variant="single" position="hero" />
+              <LeadForm content={sample.form} copy={site.leadForm} variant="single" position="hero" />
             </div>
             <div className="flex flex-col gap-3">
               <p className="label-small font-medium uppercase text-foreground">
@@ -156,7 +150,7 @@ export default function Home() {
               <LeadForm
                 id="form-multi"
                 content={sample.form}
-                copy={leadFormCopy}
+                copy={site.leadForm}
                 variant="multi"
                 position="mid"
               />
@@ -164,7 +158,7 @@ export default function Home() {
           </Container>
         </Section>
 
-        <Faq items={sample.faq} title={sectionTitles.faq} />
+        <Faq items={sample.faq} title={site.sectionTitles.faq} />
 
         <Container className="flex flex-col gap-12 border-t border-border py-10 md:py-16">
           <div className="flex flex-col gap-4">
@@ -387,7 +381,13 @@ export default function Home() {
         </Section>
       </main>
 
-      <SiteFooter content={footer} showLinks />
+      <SiteFooter
+        content={site.footer}
+        ui={site.ui}
+        locale={locale}
+        theme={theme}
+        showLinks
+      />
     </>
   );
 }
