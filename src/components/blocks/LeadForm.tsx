@@ -188,6 +188,8 @@ export function LeadForm({
 
   const isMulti = variant === "multi";
   const isLastStep = !isMulti || step === STEP_COUNT - 1;
+  // In the step form the subtitle and the privacy note appear with the contact step.
+  const showReassurance = !isMulti || step === STEP_COUNT - 1;
   const titleId = `${id}-title`;
   const titleClass = position === "hero" ? "h3" : "h2";
 
@@ -358,7 +360,7 @@ export function LeadForm({
             <h2 id={titleId} className={cn(titleClass, "font-bold text-pretty")}>
               {content.title}
             </h2>
-            <p className="text-muted-foreground">{content.subtitle}</p>
+            {showReassurance && <p className="text-muted-foreground">{content.subtitle}</p>}
           </div>
 
           {isMulti ? (
@@ -443,7 +445,9 @@ export function LeadForm({
             )}
           </div>
 
-          <p className="text-sm text-muted-foreground">{content.privacyNote}</p>
+          {showReassurance && (
+            <p className="text-sm text-muted-foreground">{content.privacyNote}</p>
+          )}
         </form>
       )}
     </div>
