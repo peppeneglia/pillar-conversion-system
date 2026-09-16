@@ -34,8 +34,9 @@ export function OptionSwitch({ label, name, cookieName, value, options }: Option
   }
 
   return (
-    <fieldset className="flex items-center gap-1 rounded-full border border-on-dark/25 p-1" disabled={isPending}>
-      <legend className="sr-only">{label}</legend>
+    <fieldset className="flex flex-col gap-2" disabled={isPending}>
+      <legend className="label-small font-semibold uppercase text-on-dark-muted">{label}</legend>
+      <div className="flex items-center gap-1 rounded-full border border-on-dark/25 p-1">
       {options.map((option) => {
         const selected = option.value === value;
         const id = `${name}-${option.value}`;
@@ -64,7 +65,8 @@ export function OptionSwitch({ label, name, cookieName, value, options }: Option
             {option.label}
           </label>
         );
-      })}
+        })}
+      </div>
     </fieldset>
   );
 }

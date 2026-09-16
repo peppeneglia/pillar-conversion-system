@@ -1,6 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
 import { FooterLinks } from "@/components/blocks/FooterLinks";
+import { Wordmark } from "@/components/blocks/Wordmark";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { OptionSwitch } from "@/components/ui/OptionSwitch";
@@ -32,23 +31,13 @@ export function SiteFooter({
   return (
     <footer className="pt-12 pb-3 select-none">
       <Container>
-        <div className="flex flex-col gap-5 rounded-2xl bg-(image:--gradient-surface-dark) px-6 py-6 shadow-lg md:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <Link
-              href="/"
-              aria-label={ui.homeLink}
-              className="flex min-h-11 items-center rounded-md outline-offset-4 focus-visible:outline-2 focus-visible:outline-on-dark"
-            >
-              <Image
-                src="/logo.svg"
-                alt="Pillar"
-                width={110}
-                height={34}
-                className="brightness-0 invert"
-              />
-            </Link>
+        <div className="grid gap-8 rounded-2xl bg-(image:--gradient-surface-dark) px-6 py-8 shadow-lg md:grid-cols-[minmax(0,1fr)_auto] md:gap-12 md:px-8">
+          <div className="flex flex-col gap-5">
+            <Wordmark ui={ui} full />
 
-            <div className="flex flex-wrap items-center gap-2">
+            <p className="max-w-md text-sm text-on-dark-muted">{content.description}</p>
+
+            <div className="flex flex-wrap items-end gap-4">
               <OptionSwitch
                 label={ui.localeLabel}
                 name="locale"
@@ -69,22 +58,27 @@ export function SiteFooter({
                   { value: "dark", label: ui.themeNames.dark },
                 ]}
               />
-              {showCta && (
-                <Button
-                  href={content.cta.target}
-                  variant="contrast"
-                  size="sm"
-                  data-track-cta="footer"
-                >
-                  {content.cta.label}
-                </Button>
-              )}
             </div>
+
+            {showDisclaimer && (
+              <p className="max-w-md text-sm text-on-dark-muted">{content.disclaimer}</p>
+            )}
           </div>
 
-          {showLinks && <FooterLinks label={ui.footerNav} links={content.links} />}
-
-          {showDisclaimer && <p className="text-sm text-on-dark-muted">{content.disclaimer}</p>}
+          <div className="flex flex-col gap-4 md:items-end">
+            {showLinks && <FooterLinks label={ui.footerNav} links={content.links} />}
+            {showCta && (
+              <Button
+                href={content.cta.target}
+                variant="contrast"
+                size="sm"
+                data-track-cta="footer"
+                className="w-full md:w-auto"
+              >
+                {content.cta.label}
+              </Button>
+            )}
+          </div>
         </div>
       </Container>
     </footer>

@@ -10,22 +10,22 @@ export type FooterLinksProps = {
   links: FooterLink[];
 };
 
-/** Pills in a row; the page you are on is filled in. */
+/** Three per row: project pages on the first line, landings on the second. */
 export function FooterLinks({ label, links }: FooterLinksProps) {
   const pathname = usePathname();
 
   return (
     <nav aria-label={label}>
-      <ul className="flex flex-wrap items-center gap-2">
+      <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3">
         {links.map((link) => {
           const current = pathname === link.href;
           return (
-            <li key={link.href}>
+            <li key={link.href} className="flex">
               <Link
                 href={link.href}
                 aria-current={current ? "page" : undefined}
                 className={cn(
-                  "flex min-h-11 items-center rounded-full px-4 text-sm font-medium",
+                  "flex min-h-11 w-full items-center justify-center rounded-full px-4 text-center text-sm font-medium",
                   "transition-colors duration-150 motion-reduce:transition-none",
                   "outline-offset-2 focus-visible:outline-2 focus-visible:outline-on-dark",
                   current
