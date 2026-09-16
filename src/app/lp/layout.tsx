@@ -17,7 +17,7 @@ export default async function LandingLayout({ children }: LayoutProps<"/lp">) {
         ui={content.ui}
         locale={locale}
         theme={theme}
-        showCta
+        landing
       />
     </>
   );

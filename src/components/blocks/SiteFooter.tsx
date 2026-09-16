@@ -11,8 +11,11 @@ export type SiteFooterProps = {
   ui: UiLabels;
   locale: Locale;
   theme: Theme;
-  /** Show the footer CTA; only where its target exists on the page. */
-  showCta?: boolean;
+  /**
+   * Landing footer: Pillar logo and product description on the left, the demo
+   * CTA with the switches under it on the right.
+   */
+  landing?: boolean;
   /** The concept disclaimer belongs to the index page only. */
   showDisclaimer?: boolean;
   /** Section links; kept off the landing pages so they do not leak the reader away. */
@@ -24,56 +27,62 @@ export function SiteFooter({
   ui,
   locale,
   theme,
-  showCta = false,
+  landing = false,
   showDisclaimer = false,
   showLinks = false,
 }: SiteFooterProps) {
+  const switches = (
+    <div className="flex flex-wrap items-end gap-4">
+      <OptionSwitch
+        label={ui.localeLabel}
+        name="locale"
+        cookieName={LOCALE_COOKIE}
+        value={locale}
+        options={[
+          { value: "it", label: ui.localeNames.it },
+          { value: "en", label: ui.localeNames.en },
+        ]}
+      />
+      <OptionSwitch
+        label={ui.themeLabel}
+        name="theme"
+        cookieName={THEME_COOKIE}
+        value={theme}
+        options={[
+          { value: "light", label: ui.themeNames.light },
+          { value: "dark", label: ui.themeNames.dark },
+        ]}
+      />
+    </div>
+  );
+
   return (
     <footer className="pt-12 pb-3 select-none">
       <Container>
         <div className="grid gap-8 rounded-2xl bg-(image:--gradient-surface-dark) px-6 py-8 shadow-lg md:grid-cols-[minmax(0,1fr)_auto] md:gap-12 md:px-8">
           <div className="flex flex-col gap-5">
-            <Wordmark ui={ui} full />
-
-            <p className="max-w-md text-sm text-on-dark-muted">{content.description}</p>
-
-            <div className="flex flex-wrap items-end gap-4">
-              <OptionSwitch
-                label={ui.localeLabel}
-                name="locale"
-                cookieName={LOCALE_COOKIE}
-                value={locale}
-                options={[
-                  { value: "it", label: ui.localeNames.it },
-                  { value: "en", label: ui.localeNames.en },
-                ]}
-              />
-              <OptionSwitch
-                label={ui.themeLabel}
-                name="theme"
-                cookieName={THEME_COOKIE}
-                value={theme}
-                options={[
-                  { value: "light", label: ui.themeNames.light },
-                  { value: "dark", label: ui.themeNames.dark },
-                ]}
-              />
-            </div>
-
+            <Wordmark ui={ui} full={!landing} />
+            <p className="max-w-md text-sm text-on-dark-muted">
+              {landing ? content.productDescription : content.description}
+            </p>
+            {!landing && switches}
           </div>
 
-          <div className="flex flex-col gap-4 md:items-end">
+          <div className="flex flex-col gap-5 md:items-end">
             {showLinks && <FooterLinks label={ui.footerNav} links={content.links} />}
-            {showCta && (
-              <Button
-                href={content.cta.target}
-                variant="contrast"
-                size="sm"
-                data-track-cta="footer"
-                className="w-full md:w-auto"
-              >
-                {content.cta.label}
-              </Button>
+            {landing && (
+              <>
+                <Button
+                  href={content.cta.target}
+                  variant="contrast"
+                  size="sm"
+                  data-track-cta="footer"
+                  className="w-full md:w-auto"
+                >
+                  {content.cta.label}
+                </Button>
+                {switches}
+              </>
             )}
             {showDisclaimer && (
               <p className="max-w-md text-sm text-on-dark-muted md:mt-auto md:text-right">
