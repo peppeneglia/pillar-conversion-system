@@ -1,8 +1,8 @@
+import { HeaderSurface } from "@/components/blocks/HeaderSurface";
 import { Wordmark } from "@/components/blocks/Wordmark";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import type { CtaConfig, FooterLink, UiLabels } from "@/content/types";
-import { cn } from "@/lib/cn";
 
 export type SiteHeaderProps = {
   ui: UiLabels;
@@ -23,7 +23,7 @@ export function SiteHeader({
   sticky = false,
 }: SiteHeaderProps) {
   return (
-    <header className={cn("bg-background pt-3 select-none", sticky && "sticky top-0 z-40")}>
+    <HeaderSurface sticky={sticky}>
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-(image:--gradient-surface-dark) px-4 py-3 shadow-lg md:px-6">
           <Wordmark ui={ui} full={fullWordmark} />
@@ -54,6 +54,6 @@ export function SiteHeader({
           )}
         </div>
       </Container>
-    </header>
+    </HeaderSurface>
   );
 }
