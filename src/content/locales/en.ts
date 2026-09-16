@@ -53,15 +53,14 @@ export const en: SiteContent = {
       currentTools: {
         legend: "What do you use today?",
         options: [
-          { value: "excel-carta", label: "Excel and paper" },
+          { value: "carta", label: "Paper" },
+          { value: "excel", label: "Excel" },
           { value: "altro-gestionale", label: "Another system" },
-          { value: "nessuno-strutturato", label: "Nothing structured" },
         ],
       },
       contactLegend: "Your contact details",
     },
     progressLabel: "Step {current} of {total}",
-    nextLabel: "Next",
     backLabel: "Back",
     errors: {
       required: "This field is required.",
@@ -79,6 +78,8 @@ export const en: SiteContent = {
   footer: {
     description:
       "A conversion concept: three landing pages for three awareness stages of paid traffic, with the events to measure them.",
+    productDescription:
+      "Pillar brings cash, invoices, quotes and sites into one place, and shows the margin of every job while the work is still open.",
     disclaimer:
       "Unofficial concept made as portfolio work. Not affiliated with Pillar Srl.",
     cta: { label: "Book a demo", target: "#form" },
@@ -276,8 +277,10 @@ export const en: SiteContent = {
         eyebrow: "Site margin",
         headline: "You know your revenue.",
         headlineAccent: "Do you know your profit?",
-        subheadline:
-          "Pillar shows you the margin of every site while the work is open. Costs, hours, delivery notes and variations tracked in real time.",
+        subheadline: [
+          "Pillar shows you the margin of every site while the work is open.",
+          "Costs, hours, delivery notes and variations tracked in real time.",
+        ],
         primaryCta: { label: "Book a demo", target: "#form" },
         secondaryCta: { label: "How it works", target: "#prima-dopo" },
         proofLine: "More than 700 construction firms use it every day",
@@ -340,7 +343,7 @@ export const en: SiteContent = {
         },
       ],
       form: {
-        title: "Let's look at the numbers of one of your sites",
+        title: "Tell us about your site",
         subtitle: "A 30 minute video call, no commitment.",
         submitLabel: "Book the demo",
         privacyNote,
@@ -357,8 +360,10 @@ export const en: SiteContent = {
         eyebrow: "Software for construction firms",
         headline: "You have tried a system before.",
         headlineAccent: "This time start from the numbers.",
-        subheadline:
-          "Pillar connects cash, invoices and sites. You see the margin of every job while the work is still open, not at the end.",
+        subheadline: [
+          "Pillar connects cash, invoices and sites.",
+          "You see the margin of every job while the work is still open, not at the end.",
+        ],
         primaryCta: { label: "Book a demo", target: "#form" },
         secondaryCta: { label: "How it works", target: "#prima-dopo" },
         proofLine: "More than 700 construction firms use it every day",
@@ -439,8 +444,10 @@ export const en: SiteContent = {
         eyebrow: "Delivery notes, site reports and hours",
         headline: "You collect the delivery notes.",
         headlineAccent: "Typing them up is not your job.",
-        subheadline:
-          "A photo on WhatsApp and the delivery note is filed under the right site. A voice message and the site report is written. No app to install, for anyone.",
+        subheadline: [
+          "A photo on WhatsApp and the delivery note is filed under the right site.",
+          "A voice message and the site report is written. No app to install, for anyone.",
+        ],
         primaryCta: { label: "See how it works", target: "#prima-dopo" },
         secondaryCta: { label: "Book a demo", target: "#form" },
         proofLine: "More than 700 construction firms use it every day",

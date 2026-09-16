@@ -81,7 +81,6 @@ export type LeadFormCopy = {
   };
   /** Template with `{current}` and `{total}` tokens. */
   progressLabel: string;
-  nextLabel: string;
   backLabel: string;
   errors: {
     required: string;
@@ -110,6 +109,8 @@ export type NotFoundContent = {
 export type FooterContent = {
   /** One paragraph under the logo, saying what this project is. */
   description: string;
+  /** Used on the landing pages, where the footer speaks for Pillar. */
+  productDescription: string;
   disclaimer: string;
   /** Rendered only on landing pages, where `#form` exists. */
   cta: CtaConfig;
@@ -134,7 +135,8 @@ export type StageContent<S extends Stage = Stage> = {
     headline: string;
     /** Closing part of the headline, rendered with the accessible hero gradient. */
     headlineAccent?: string;
-    subheadline: string;
+    /** One paragraph per line: the breaks are a copy decision. */
+    subheadline: string[];
     primaryCta: CtaConfig;
     secondaryCta: CtaConfig;
     proofLine: string;

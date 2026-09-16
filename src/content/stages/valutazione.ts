@@ -12,8 +12,10 @@ export const valutazione: StageContent<"valutazione"> = {
     eyebrow: "Gestionale per imprese edili",
     headline: "Hai già provato un gestionale.",
     headlineAccent: "Questa volta parti dai numeri.",
-    subheadline:
-      "Pillar collega cassa, fatture e cantieri. Vedi il margine di ogni commessa mentre i lavori sono ancora aperti, non a consuntivo.",
+    subheadline: [
+      "Pillar collega cassa, fatture e cantieri.",
+      "Vedi il margine di ogni commessa mentre i lavori sono ancora aperti, non a consuntivo.",
+    ],
     primaryCta: {
       label: "Prenota una demo",
       target: "#form",

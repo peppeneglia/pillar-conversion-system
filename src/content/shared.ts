@@ -51,15 +51,14 @@ export const leadFormCopy: LeadFormCopy = {
     currentTools: {
       legend: "Cosa usi oggi?",
       options: [
-        { value: "excel-carta", label: "Excel e carta" },
+        { value: "carta", label: "Carta" },
+        { value: "excel", label: "Excel" },
         { value: "altro-gestionale", label: "Un altro gestionale" },
-        { value: "nessuno-strutturato", label: "Niente di strutturato" },
       ],
     },
     contactLegend: "I tuoi dati di contatto",
   },
   progressLabel: "Passo {current} di {total}",
-  nextLabel: "Avanti",
   backLabel: "Indietro",
   errors: {
     required: "Questo campo è obbligatorio.",
@@ -95,6 +94,8 @@ export const notFoundContent: NotFoundContent = {
 export const footer: FooterContent = {
   description:
     "Un concept di ottimizzazione della conversione: tre landing per tre stadi di consapevolezza del traffico a pagamento, con gli eventi per misurarle.",
+  productDescription:
+    "Pillar collega cassa, fatture, preventivi e cantieri in un unico posto, e mostra il margine di ogni commessa mentre i lavori sono ancora aperti.",
   disclaimer,
   cta: {
     label: "Prenota una demo",

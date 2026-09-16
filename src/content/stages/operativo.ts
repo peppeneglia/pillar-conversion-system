@@ -12,8 +12,10 @@ export const operativo: StageContent<"operativo"> = {
     eyebrow: "Bolle, rapportini e ore",
     headline: "Le bolle le raccogli tu.",
     headlineAccent: "Trascriverle non è il tuo lavoro.",
-    subheadline:
-      "Una foto su WhatsApp e la bolla è archiviata nel cantiere giusto. Un vocale e il rapportino è scritto. Nessuna app da installare, per nessuno.",
+    subheadline: [
+      "Una foto su WhatsApp e la bolla è archiviata nel cantiere giusto.",
+      "Un vocale e il rapportino è scritto. Nessuna app da installare, per nessuno.",
+    ],
     // CTAs are intentionally inverted compared to valutazione: this reader does
     // not make the purchase decision. Do not align them.
     primaryCta: {

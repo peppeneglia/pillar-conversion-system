@@ -12,8 +12,10 @@ export const margine: StageContent<"margine"> = {
     eyebrow: "Marginalità di cantiere",
     headline: "Sai quanto fatturi.",
     headlineAccent: "Sai quanto guadagni?",
-    subheadline:
-      "Pillar ti mostra il margine di ogni cantiere mentre i lavori sono aperti. Costi, ore, bolle e varianti tracciati in tempo reale.",
+    subheadline: [
+      "Pillar ti mostra il margine di ogni cantiere mentre i lavori sono aperti.",
+      "Costi, ore, bolle e varianti tracciati in tempo reale.",
+    ],
     primaryCta: {
       label: "Prenota una demo",
       target: "#form",
@@ -72,7 +74,7 @@ export const margine: StageContent<"margine"> = {
     },
   ],
   form: {
-    title: "Guardiamo i numeri di un tuo cantiere",
+    title: "Parlaci del tuo cantiere",
     subtitle: "30 minuti in videochiamata, senza impegno.",
     submitLabel: "Prenota la demo",
     privacyNote,
