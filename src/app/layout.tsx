@@ -11,7 +11,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Pillar Conversion System — concept non ufficiale",
+  title: "Pillar Conversion System",
   description:
     "Progetto personale di portfolio, non commissionato e non affiliato a Pillar Srl.",
   robots: {

@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Hide the Next.js dev overlay button.
+  devIndicators: false,
   async headers() {
     return [
       {
