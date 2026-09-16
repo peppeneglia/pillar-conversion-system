@@ -110,45 +110,42 @@ type ChoiceGroupProps = {
   question: ChoiceQuestion;
   value: string;
   error?: string;
-  onChange: (value: string) => void;
+  onChoose: (value: string) => void;
 };
 
-function ChoiceGroup({ formId, name, question, value, error, onChange }: ChoiceGroupProps) {
+function ChoiceGroup({ formId, name, question, value, error, onChoose }: ChoiceGroupProps) {
   const errorId = `${formId}-${name}-error`;
+  const legendId = `${formId}-${name}-legend`;
 
   return (
-    <fieldset aria-describedby={error ? errorId : undefined}>
-      <legend className="h4 mb-4 font-semibold">{question.legend}</legend>
-      <div className="grid gap-3 sm:grid-cols-2">
+    <div role="group" aria-labelledby={legendId} aria-describedby={error ? errorId : undefined}>
+      <p id={legendId} className="h4 mb-4 font-semibold">
+        {question.legend}
+      </p>
+      <div className="grid gap-3 sm:grid-cols-3">
         {question.options.map((option, index) => {
-          const optionId = `${formId}-${name}-${index}`;
+          const selected = value === option.value;
           return (
-            <label
+            <button
               key={option.value}
-              htmlFor={optionId}
+              id={`${formId}-${name}-${index}`}
+              type="button"
+              aria-pressed={selected}
+              data-field={name}
+              onClick={() => onChoose(option.value)}
               className={cn(
-                "flex min-h-11 cursor-pointer items-center gap-3 rounded-md border border-input bg-card px-4 py-3",
+                "flex min-h-14 cursor-pointer items-center justify-center rounded-xl border px-4 py-3 text-center font-medium",
                 "transition-colors duration-150 motion-reduce:transition-none",
-                "hover:border-ring active:bg-muted",
-                "outline-offset-2 has-focus-visible:outline-2 has-focus-visible:outline-primary",
-                "has-checked:border-primary has-checked:bg-muted",
-                error && "border-destructive",
-                "has-disabled:cursor-not-allowed has-disabled:opacity-50",
+                "outline-offset-2 focus-visible:outline-2 focus-visible:outline-primary",
+                "disabled:cursor-not-allowed disabled:opacity-50",
+                selected
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-input bg-card hover:border-ring hover:bg-muted active:bg-border",
+                error && !selected && "border-destructive",
               )}
             >
-              <input
-                id={optionId}
-                type="radio"
-                name={`${formId}-${name}`}
-                value={option.value}
-                checked={value === option.value}
-                onChange={() => onChange(option.value)}
-                data-field={name}
-                required
-                className="size-5 shrink-0 cursor-pointer accent-primary focus-visible:outline-none"
-              />
-              <span>{option.label}</span>
-            </label>
+              {option.label}
+            </button>
           );
         })}
       </div>
@@ -157,7 +154,7 @@ function ChoiceGroup({ formId, name, question, value, error, onChange }: ChoiceG
           <ErrorMessage id={errorId}>{error}</ErrorMessage>
         </div>
       )}
-    </fieldset>
+    </div>
   );
 }
 
@@ -263,9 +260,15 @@ export function LeadForm({
     clearError(key);
   }
 
-  function updateChoice(key: ChoiceKey, value: string) {
+  // Choosing an option answers the step: record it and move to the next one.
+  function chooseOption(key: ChoiceKey, value: string) {
+    if (stage && !startTracked.current) {
+      startTracked.current = true;
+      track("form_start", { position, variant, field: key });
+    }
     setChoices((previous) => ({ ...previous, [key]: value }));
     clearError(key);
+    changeStep(Math.min(step + 1, STEP_COUNT - 1));
   }
 
   function goNext() {
@@ -333,7 +336,7 @@ export function LeadForm({
       data-form-variant={variant}
       data-form-position={position}
       className={cn(
-        "relative scroll-mt-20 rounded-lg border border-border bg-card shadow-sm",
+        "relative scroll-mt-32 rounded-lg border border-border bg-card shadow-sm",
         position === "hero" ? "p-5 md:p-6" : "p-6 md:p-10",
       )}
     >
@@ -389,7 +392,7 @@ export function LeadForm({
                   question={copy.steps.activeSites}
                   value={choices.activeSites}
                   error={errors.activeSites}
-                  onChange={(value) => updateChoice("activeSites", value)}
+                  onChoose={(value) => chooseOption("activeSites", value)}
                 />
               )}
               {step === 1 && (
@@ -399,7 +402,7 @@ export function LeadForm({
                   question={copy.steps.currentTools}
                   value={choices.currentTools}
                   error={errors.currentTools}
-                  onChange={(value) => updateChoice("currentTools", value)}
+                  onChoose={(value) => chooseOption("currentTools", value)}
                 />
               )}
               {step === 2 && (
@@ -425,25 +428,27 @@ export function LeadForm({
             />
           </div>
 
-          <div className="flex flex-col-reverse gap-3 md:flex-row md:items-center md:justify-between">
-            {isMulti && step > 0 ? (
-              <Button type="button" variant="secondary" onClick={goBack} className="w-full md:w-auto">
-                {copy.backLabel}
-              </Button>
-            ) : (
-              <span className="hidden md:block" />
-            )}
-            {/* Distinct keys stop React from reusing the "next" button as submit mid-click. */}
-            {isLastStep ? (
-              <Button key="submit" type="submit" className="w-full md:w-auto">
-                {content.submitLabel}
-              </Button>
-            ) : (
-              <Button key="next" type="button" onClick={goNext} className="w-full md:w-auto">
-                {copy.nextLabel}
-              </Button>
-            )}
-          </div>
+          {(isLastStep || step > 0) && (
+            <div className="flex flex-col-reverse gap-3 md:flex-row md:items-center md:justify-between">
+              {isMulti && step > 0 ? (
+                <button
+                  type="button"
+                  onClick={goBack}
+                  className="inline-flex min-h-11 items-center gap-1 self-start rounded-md px-2 text-sm font-medium text-muted-foreground transition-colors duration-150 outline-offset-2 hover:text-foreground focus-visible:outline-2 focus-visible:outline-primary active:text-foreground disabled:opacity-50 motion-reduce:transition-none"
+                >
+                  <span aria-hidden="true">←</span>
+                  {copy.backLabel}
+                </button>
+              ) : (
+                <span className="hidden md:block" />
+              )}
+              {isLastStep && (
+                <Button type="submit" className="w-full md:w-auto">
+                  {content.submitLabel}
+                </Button>
+              )}
+            </div>
+          )}
 
           {showReassurance && (
             <p className="text-sm text-muted-foreground">{content.privacyNote}</p>
