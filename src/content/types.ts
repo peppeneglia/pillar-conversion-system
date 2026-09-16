@@ -213,3 +213,30 @@ export type DocumentContent = {
     rows: MeasurementRow[];
   };
 };
+
+export type Locale = "it" | "en";
+
+/** Labels that live in components rather than in page copy. */
+export type UiLabels = {
+  homeLink: string;
+  footerNav: string;
+  localeLabel: string;
+  localeNames: Record<Locale, string>;
+  themeLabel: string;
+  themeNames: { light: string; dark: string };
+};
+
+/** Everything the site renders, in one language. */
+export type SiteContent = {
+  ui: UiLabels;
+  trustBar: TrustBar;
+  beforeAfterLabels: BeforeAfterLabels;
+  sectionTitles: SectionTitles;
+  leadForm: LeadFormCopy;
+  headerCta: CtaConfig;
+  footer: FooterContent;
+  notFound: NotFoundContent;
+  document: DocumentContent;
+  stages: Record<Stage, StageContent>;
+  testimonials: Testimonial[];
+};
