@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { LeadFormVariant } from "@/components/blocks/LeadForm";
 import type { Stage } from "@/content/types";
 import {
   CTA_POSITIONS,
@@ -10,10 +11,11 @@ import {
   type CtaPosition,
   type ScrollDepth,
 } from "@/lib/analytics";
-import { getFormVariant } from "@/lib/form-variant";
 
 export type LandingAnalyticsProps = {
   stage: Stage;
+  /** Form variant decided on the server, reported with page_view. */
+  variant: LeadFormVariant;
 };
 
 function isCtaPosition(value: string | undefined): value is CtaPosition {
@@ -24,7 +26,7 @@ function isCtaPosition(value: string | undefined): value is CtaPosition {
  * Page-level events for a landing: page_view, cta_click (delegated from any
  * `[data-track-cta]` element, so CTA blocks stay Server Components) and scroll_depth.
  */
-export function LandingAnalytics({ stage }: LandingAnalyticsProps) {
+export function LandingAnalytics({ stage, variant }: LandingAnalyticsProps) {
   const pageViewTracked = useRef(false);
   const reachedDepths = useRef(new Set<ScrollDepth>());
 
@@ -32,9 +34,8 @@ export function LandingAnalytics({ stage }: LandingAnalyticsProps) {
     if (pageViewTracked.current) return;
     pageViewTracked.current = true;
 
-    const variant = getFormVariant(new URLSearchParams(window.location.search).get("form"));
     track("page_view", { stage, variant, utm: getSessionUtm() });
-  }, [stage]);
+  }, [stage, variant]);
 
   useEffect(() => {
     function handleClick(event: MouseEvent) {

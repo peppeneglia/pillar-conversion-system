@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 import { LandingAnalytics } from "@/components/analytics/LandingAnalytics";
 import { Audience } from "@/components/blocks/Audience";
 import { BeforeAfter } from "@/components/blocks/BeforeAfter";
 import { Faq } from "@/components/blocks/Faq";
 import { Hero } from "@/components/blocks/Hero";
 import { LeadForm } from "@/components/blocks/LeadForm";
-import { StageLeadForm } from "@/components/blocks/StageLeadForm";
 import { Testimonials } from "@/components/blocks/Testimonials";
 import { TrustBar } from "@/components/blocks/TrustBar";
 import { Container } from "@/components/ui/Container";
@@ -22,8 +20,10 @@ import {
   stages,
   trustBar,
 } from "@/content";
+import { getFormVariant } from "@/lib/form-variant";
 
-// Only the three stages are prerendered; anything else is a 404.
+// Reading searchParams makes the route render per request: the variant is decided on the
+// server, so the first HTML already carries the right form. Only the three stages exist.
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -38,22 +38,16 @@ export async function generateMetadata({ params }: PageProps<"/lp/[stage]">): Pr
   return { title: meta.title, description: meta.description };
 }
 
-export default async function StagePage({ params }: PageProps<"/lp/[stage]">) {
-  const { stage } = await params;
+export default async function StagePage({ params, searchParams }: PageProps<"/lp/[stage]">) {
+  const [{ stage }, query] = await Promise.all([params, searchParams]);
   if (!isStage(stage)) notFound();
 
   const content = stageContent[stage];
-  const formProps = {
-    id: "form",
-    position: "mid",
-    stage,
-    content: content.form,
-    copy: leadFormCopy,
-  } as const;
+  const variant = getFormVariant(typeof query.form === "string" ? query.form : null);
 
   return (
     <main className="flex flex-1 flex-col">
-      <LandingAnalytics stage={stage} />
+      <LandingAnalytics stage={stage} variant={variant} />
       <Hero content={content.hero} />
       <TrustBar content={trustBar} />
       <BeforeAfter id="prima-dopo" content={content.beforeAfter} labels={beforeAfterLabels} />
@@ -67,10 +61,14 @@ export default async function StagePage({ params }: PageProps<"/lp/[stage]">) {
       <Section background="muted">
         <Container>
           <div className="mx-auto max-w-3xl">
-            {/* The variant comes from ?form=, read on the client; the static HTML ships the single form. */}
-            <Suspense fallback={<LeadForm {...formProps} stage={undefined} variant="single" />}>
-              <StageLeadForm {...formProps} />
-            </Suspense>
+            <LeadForm
+              id="form"
+              position="mid"
+              stage={stage}
+              variant={variant}
+              content={content.form}
+              copy={leadFormCopy}
+            />
           </div>
         </Container>
       </Section>
