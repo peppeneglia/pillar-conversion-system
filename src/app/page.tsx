@@ -31,7 +31,13 @@ export default async function DocumentPage() {
 
   return (
     <>
-      <SiteHeader ui={site.ui} />
+      <SiteHeader
+        ui={site.ui}
+        nav={stages.items.map((item) => ({
+          label: item.name,
+          href: `/lp/${item.stage}`,
+        }))}
+      />
       <main className="flex flex-1 flex-col">
         <Section className="pt-6 pb-12 md:pt-12 md:pb-16" aria-labelledby="document-title">
           <Container className="flex flex-col gap-6">

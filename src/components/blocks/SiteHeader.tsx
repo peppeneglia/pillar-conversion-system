@@ -2,19 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import type { CtaConfig, UiLabels } from "@/content/types";
+import type { CtaConfig, FooterLink, UiLabels } from "@/content/types";
 import { cn } from "@/lib/cn";
 
 export type SiteHeaderProps = {
   ui: UiLabels;
   /** Landing action; omitted where its target does not exist on the page. */
   cta?: CtaConfig;
+  /** Page links, used on the index page to reach the landings. */
+  nav?: FooterLink[];
   sticky?: boolean;
 };
 
-export function SiteHeader({ ui, cta, sticky = false }: SiteHeaderProps) {
+export function SiteHeader({ ui, cta, nav = [], sticky = false }: SiteHeaderProps) {
   return (
-    <header className={cn("bg-background pt-3 pb-3 select-none", sticky && "sticky top-0 z-40")}>
+    <header className={cn("bg-background pt-3 select-none", sticky && "sticky top-0 z-40")}>
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-(image:--gradient-surface-dark) px-4 py-3 shadow-lg md:px-6">
           <Link
@@ -31,6 +33,20 @@ export function SiteHeader({ ui, cta, sticky = false }: SiteHeaderProps) {
               className="brightness-0 invert"
             />
           </Link>
+
+          {nav.length > 0 && (
+            <nav aria-label={ui.footerNav} className="flex flex-1 justify-end">
+              <ul className="flex flex-wrap items-center justify-end gap-2">
+                {nav.map((link) => (
+                  <li key={link.href}>
+                    <Button href={link.href} variant="ghost" size="sm">
+                      {link.label}
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
 
           {cta && (
             <Button
