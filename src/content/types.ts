@@ -184,12 +184,13 @@ export type DocumentContent = {
   };
   eyebrow: string;
   title: string;
-  lede: string;
+  /** One paragraph per line: the breaks are a copy decision, not the browser's. */
+  lede: string[];
   traffic: {
     title: string;
     body: string;
     stats: DocumentStat[];
-    note: string;
+    note: string[];
   };
   stages: {
     title: string;

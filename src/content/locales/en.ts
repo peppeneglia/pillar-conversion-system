@@ -165,15 +165,21 @@ export const en: SiteContent = {
     },
     eyebrow: "Conversion concept",
     title: "One stream of traffic, three different readers",
-    lede: "Paid traffic sends people who know different things and hold different roles to the same page. This concept splits them into three awareness stages, gives each one a landing page, and defines what to measure to tell whether it works.",
+    lede: [
+      "Paid traffic sends people who know different things and hold different roles to the same page.",
+      "This concept splits them into three awareness stages, gives each one a landing page, and defines what to measure to tell whether it works.",
+    ],
     traffic: {
       title: "How the paid traffic is spent",
       body: "Paid traffic comes from two channels with different formats: video on Meta, ads on Google.",
       stats: [
-        { channel: "Meta", value: "~47", label: "video placements" },
-        { channel: "Google", value: "39", label: "ads, 19 of them text" },
+        { channel: "Meta", value: "49", label: "video placements" },
+        { channel: "Google", value: "39", label: "ads" },
       ],
-      note: "Someone watching a video while scrolling is not looking for construction software. Someone typing a search often is. Different formats catch people at different moments, and the click does not say which moment that is.",
+      note: [
+        "Someone watching a video while scrolling is not looking for construction software. Someone typing a search often is.",
+        "Different formats catch people at different moments, and the click does not say which moment that is.",
+      ],
     },
     stages: {
       title: "Three awareness stages",

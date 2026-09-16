@@ -1,6 +1,6 @@
 import type { DocumentContent } from "./types";
 
-// Only numbers provided in the brief: Meta ~47 video placements, Google 39 ads of which 19 text.
+// Only numbers provided in the brief: Meta 49 video placements, Google 39 ads.
 export const documentContent: DocumentContent = {
   meta: {
     title: "Pillar Conversion System — concept non ufficiale",
@@ -9,15 +9,21 @@ export const documentContent: DocumentContent = {
   },
   eyebrow: "Concept di conversione",
   title: "Un solo traffico, tre lettori diversi",
-  lede: "Il traffico a pagamento porta sulla stessa pagina persone che sanno cose diverse e hanno ruoli diversi. Questo concept le separa in tre stadi di consapevolezza, dà a ciascuno una landing e definisce cosa misurare per capire se funziona.",
+  lede: [
+    "Il traffico a pagamento porta sulla stessa pagina persone che sanno cose diverse e hanno ruoli diversi.",
+    "Questo concept le separa in tre stadi di consapevolezza, dà a ciascuno una landing e definisce cosa misurare per capire se funziona.",
+  ],
   traffic: {
     title: "Come si spende il traffico a pagamento",
     body: "Il traffico a pagamento arriva da due canali con formati diversi: video su Meta, annunci su Google.",
     stats: [
-      { channel: "Meta", value: "~47", label: "posizioni video" },
-      { channel: "Google", value: "39", label: "annunci, di cui 19 di testo" },
+      { channel: "Meta", value: "49", label: "posizioni video" },
+      { channel: "Google", value: "39", label: "annunci" },
     ],
-    note: "Chi guarda un video mentre scorre non sta cercando un gestionale. Chi scrive una ricerca spesso sì. Formati diversi intercettano persone in momenti diversi, e il clic non dice in quale momento si trovano.",
+    note: [
+      "Chi guarda un video mentre scorre non sta cercando un gestionale. Chi scrive una ricerca spesso sì.",
+      "Formati diversi intercettano persone in momenti diversi, e il clic non dice in quale momento si trovano.",
+    ],
   },
   stages: {
     title: "Tre stadi di consapevolezza",
