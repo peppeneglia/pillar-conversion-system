@@ -4,7 +4,7 @@ import type { StageContent } from "../types";
 export const operativo: StageContent<"operativo"> = {
   stage: "operativo",
   meta: {
-    title: "Bolle, rapportini e ore di cantiere — Pillar",
+    title: "Bolle, rapportini e ore di cantiere — concept non ufficiale",
     description:
       "Una foto su WhatsApp e la bolla è archiviata. Un vocale e il rapportino è scritto. Senza app da installare.",
   },

@@ -23,7 +23,7 @@ export function Section({
   return (
     <section
       className={cn(
-        "scroll-mt-6 py-16 md:py-24",
+        "scroll-mt-20 py-16 md:py-24",
         backgroundClasses[background],
         className,
       )}

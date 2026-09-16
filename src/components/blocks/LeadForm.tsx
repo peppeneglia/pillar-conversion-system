@@ -331,7 +331,7 @@ export function LeadForm({
       data-form-variant={variant}
       data-form-position={position}
       className={cn(
-        "relative scroll-mt-6 rounded-lg border border-border bg-card shadow-sm",
+        "relative scroll-mt-20 rounded-lg border border-border bg-card shadow-sm",
         position === "hero" ? "p-5 md:p-6" : "p-6 md:p-10",
       )}
     >
