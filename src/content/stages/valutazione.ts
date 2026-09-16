@@ -4,7 +4,7 @@ import type { StageContent } from "../types";
 export const valutazione: StageContent<"valutazione"> = {
   stage: "valutazione",
   meta: {
-    title: "Gestionale per imprese edili — concept non ufficiale",
+    title: "Pillar: gestionale per imprese edili",
     description:
       "Cassa, fatture, preventivi e commesse in un unico posto. Vedi il margine di ogni cantiere mentre i lavori sono ancora aperti.",
   },

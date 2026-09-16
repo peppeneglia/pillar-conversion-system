@@ -9,7 +9,13 @@ const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_c
 export type UtmKey = (typeof UTM_KEYS)[number];
 export type Utm = Partial<Record<UtmKey, string>>;
 
-export type CtaPosition = "hero_primary" | "hero_secondary" | "mid" | "footer";
+export type CtaPosition =
+  | "header_primary"
+  | "header_secondary"
+  | "hero_primary"
+  | "hero_secondary"
+  | "mid"
+  | "footer";
 export type ScrollDepth = 25 | 50 | 75 | 100;
 export type FormFieldName = LeadFormFieldKey | "activeSites" | "currentTools";
 
@@ -35,6 +41,8 @@ export type TrackedEvent = {
 }[AnalyticsEventName];
 
 export const CTA_POSITIONS: readonly CtaPosition[] = [
+  "header_primary",
+  "header_secondary",
   "hero_primary",
   "hero_secondary",
   "mid",

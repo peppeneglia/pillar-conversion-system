@@ -1,6 +1,6 @@
 import type { LeadFormVariant } from "@/components/blocks/LeadForm";
 
-/** `?form=multi` enables the three-step form; any other value, or none, gives `single`. */
+/** The step form is the default; `?form=single` switches to the short one. */
 export function getFormVariant(value: string | null): LeadFormVariant {
-  return value === "multi" ? "multi" : "single";
+  return value === "single" ? "single" : "multi";
 }

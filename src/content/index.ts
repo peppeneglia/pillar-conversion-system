@@ -25,9 +25,9 @@ export function getTestimonialsForStage(stage: Stage): Testimonial[] {
 
 export {
   beforeAfterLabels,
-  conceptBadge,
   disclaimer,
   footer,
+  headerCtas,
   leadFormCopy,
   notFoundContent,
   privacyNote,

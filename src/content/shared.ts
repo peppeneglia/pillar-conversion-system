@@ -1,5 +1,6 @@
 import type {
   BeforeAfterLabels,
+  HeaderCtas,
   FooterContent,
   LeadFormCopy,
   NotFoundContent,
@@ -80,7 +81,10 @@ export const privacyNote = "I tuoi dati servono solo a organizzare la demo. Ness
 export const disclaimer =
   "Concept non ufficiale a scopo di portfolio. Non affiliato a Pillar Srl.";
 
-export const conceptBadge = "Concept non ufficiale";
+export const headerCtas: HeaderCtas = {
+  secondary: { label: "Approfondisci", target: "#prima-dopo" },
+  primary: { label: "Prenota demo", target: "#form" },
+};
 
 export const notFoundContent: NotFoundContent = {
   title: "Pagina non trovata",

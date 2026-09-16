@@ -4,7 +4,7 @@ import type { StageContent } from "../types";
 export const margine: StageContent<"margine"> = {
   stage: "margine",
   meta: {
-    title: "Marginalità di cantiere per imprese edili — concept non ufficiale",
+    title: "Pillar: marginalità di cantiere",
     description:
       "Il margine di ogni cantiere in tempo reale. Costi reali, ore misurate, scostamenti visibili mentre i lavori sono ancora aperti.",
   },

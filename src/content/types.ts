@@ -101,6 +101,12 @@ export type FooterLink = {
   href: string;
 };
 
+/** Landing header actions. */
+export type HeaderCtas = {
+  primary: CtaConfig;
+  secondary: CtaConfig;
+};
+
 export type NotFoundContent = {
   title: string;
   body: string;
