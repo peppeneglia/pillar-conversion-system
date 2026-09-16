@@ -38,7 +38,16 @@ export function HeaderSurface({ sticky, children }: HeaderSurfaceProps) {
       const stack = document.elementsFromPoint(x, y);
       header.style.visibility = "";
 
-      for (const node of stack) {
+      // Only page surfaces count: a card or a form sitting on the section is skipped.
+      const surface = stack
+        .map((node) => node.closest<HTMLElement>("[data-surface]"))
+        .find((node): node is HTMLElement => node !== null);
+
+      const candidates = [surface, document.body].filter(
+        (node): node is HTMLElement => node !== null && node !== undefined,
+      );
+
+      for (const node of candidates) {
         const background = window.getComputedStyle(node).backgroundColor;
         if (background && background !== TRANSPARENT) {
           setColor((current) => (current === background ? current : background));

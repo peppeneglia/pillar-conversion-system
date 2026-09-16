@@ -13,7 +13,7 @@ export function TrustBar({ content, showStats = true, id = "trust-bar" }: TrustB
   const titleId = `${id}-title`;
 
   return (
-    <section id={id} aria-labelledby={titleId} className="scroll-mt-24 py-10 md:py-14">
+    <section id={id} data-surface="background" aria-labelledby={titleId} className="scroll-mt-24 py-10 md:py-14">
       <Container>
         <div
           className={cn(

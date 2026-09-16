@@ -22,7 +22,7 @@ export function Hero({ content, stats = [] }: HeroProps) {
   } = content;
 
   return (
-    <section aria-labelledby="hero-title" className="pt-6 pb-12 md:pt-16 md:pb-20">
+    <section data-surface="background" aria-labelledby="hero-title" className="pt-6 pb-12 md:pt-16 md:pb-20">
       <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:gap-16">
         <div className="flex flex-col items-start">
           <p className="flex items-center gap-2 label-medium font-semibold uppercase text-muted-foreground">

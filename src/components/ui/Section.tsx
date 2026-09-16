@@ -22,6 +22,7 @@ export function Section({
 }: SectionProps) {
   return (
     <section
+      data-surface={background}
       className={cn(
         "scroll-mt-20 py-16 md:py-24",
         backgroundClasses[background],
