@@ -1,9 +1,11 @@
+import Link from "next/link";
 import { FooterLinks } from "@/components/blocks/FooterLinks";
 import { Wordmark } from "@/components/blocks/Wordmark";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { OptionSwitch } from "@/components/ui/OptionSwitch";
 import type { FooterContent, Locale, UiLabels } from "@/content/types";
+import { cn } from "@/lib/cn";
 import { LOCALE_COOKIE, THEME_COOKIE, type Theme } from "@/lib/preferences";
 
 export type SiteFooterProps = {
@@ -91,6 +93,24 @@ export function SiteFooter({
             )}
           </div>
         </div>
+
+        {/* Signature under the card. On landings the link opens a new tab so the reader stays on the conversion page. */}
+        <p className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
+          {content.credit.prefix}
+          <Link
+            href={content.credit.href}
+            target={landing ? "_blank" : undefined}
+            rel={landing ? "noopener noreferrer" : undefined}
+            className={cn(
+              "inline-flex min-h-11 items-center rounded-md px-1 font-medium text-foreground",
+              "underline-offset-4 transition-colors duration-150 motion-reduce:transition-none",
+              "hover:underline active:text-muted-foreground",
+              "outline-offset-2 focus-visible:outline-2 focus-visible:outline-foreground",
+            )}
+          >
+            {content.credit.name}
+          </Link>
+        </p>
       </Container>
     </footer>
   );

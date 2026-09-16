@@ -2,6 +2,7 @@ import type {
   BeforeAfterLabels,
   CtaConfig,
   FooterContent,
+  FooterCredit,
   LeadFormCopy,
   NotFoundContent,
   SectionTitles,
@@ -82,6 +83,13 @@ export const disclaimer =
 
 export const headerCta: CtaConfig = { label: "Prenota demo", target: "#form" };
 
+/** Signature under every footer, landing pages included. */
+export const footerCredit: FooterCredit = {
+  prefix: "Progetto di",
+  name: "Giuseppe Neglia",
+  href: "/chi-sono",
+};
+
 export const notFoundContent: NotFoundContent = {
   title: "Pagina non trovata",
   body: "Questo indirizzo non corrisponde a nessuna pagina del concept.",
@@ -111,4 +119,5 @@ export const footer: FooterContent = {
     { label: "Landing gestionale", href: "/lp/valutazione" },
     { label: "Landing operativo", href: "/lp/operativo" },
   ],
+  credit: footerCredit,
 };

@@ -35,6 +35,7 @@ prenotare una demo.
   promesse e cinque domande di misura, ciascuna con una sola metrica primaria,
   la sua lettura e gli eventi che la alimentano.
 - `/progetto` racconta come è costruito e cosa resta aperto.
+- `/chi-sono` presenta chi ha fatto il progetto, il metodo e il perché.
 - `/preview` mostra il design system: token, primitive e blocchi con tutti gli
   stati.
 

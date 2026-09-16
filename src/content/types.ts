@@ -106,6 +106,13 @@ export type NotFoundContent = {
   cta: CtaConfig;
 };
 
+/** Signature under the footer card: `prefix` then `name` linked to `href`. */
+export type FooterCredit = {
+  prefix: string;
+  name: string;
+  href: `/${string}`;
+};
+
 export type FooterContent = {
   /** One paragraph under the logo, saying what this project is. */
   description: string;
@@ -116,6 +123,7 @@ export type FooterContent = {
   cta: CtaConfig;
   note: string;
   links: FooterLink[];
+  credit: FooterCredit;
 };
 
 export type AudienceContent = {
@@ -238,6 +246,46 @@ export type ProjectContent = {
   status: {
     title: string;
     items: string[];
+  };
+};
+
+/** One job or study entry on the about page. */
+export type AboutEntry = {
+  title: string;
+  /** Organisation and place, as written on a CV. */
+  organisation: string;
+  period: string;
+  description: string;
+};
+
+/**
+ * Copy for the about page at `/chi-sono`. It is a personal statement and stays
+ * in Italian whatever the chosen language, like the testimonials.
+ */
+export type AboutContent = {
+  meta: {
+    title: string;
+    description: string;
+  };
+  eyebrow: string;
+  title: string;
+  /** One paragraph per item. */
+  intro: string[];
+  method: {
+    title: string;
+    paragraphs: string[];
+  };
+  experience: {
+    title: string;
+    entries: AboutEntry[];
+  };
+  education: {
+    title: string;
+    entries: AboutEntry[];
+  };
+  why: {
+    title: string;
+    paragraphs: string[];
   };
 };
 

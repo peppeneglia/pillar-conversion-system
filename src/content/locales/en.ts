@@ -93,6 +93,7 @@ export const en: SiteContent = {
       { label: "Software landing", href: "/lp/valutazione" },
       { label: "Field work landing", href: "/lp/operativo" },
     ],
+    credit: { prefix: "A project by", name: "Giuseppe Neglia", href: "/chi-sono" },
   },
   notFound: {
     title: "Page not found",
