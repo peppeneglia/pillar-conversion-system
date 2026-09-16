@@ -36,7 +36,7 @@ export function OptionSwitch({ label, name, cookieName, value, options }: Option
   return (
     <fieldset className="flex flex-col gap-2" disabled={isPending}>
       <legend className="label-small font-semibold uppercase text-on-dark-muted">{label}</legend>
-      <div className="flex items-center gap-1 rounded-full border border-on-dark/25 p-1">
+      <div className="flex items-center gap-0.5 rounded-full border border-on-dark/25 p-0.5">
       {options.map((option) => {
         const selected = option.value === value;
         const id = `${name}-${option.value}`;
@@ -45,7 +45,9 @@ export function OptionSwitch({ label, name, cookieName, value, options }: Option
             key={option.value}
             htmlFor={id}
             className={cn(
-              "flex min-h-11 cursor-pointer items-center rounded-full px-3 text-sm font-medium",
+              // 32px tall, with a transparent overlay taking the hit area back to 44px.
+              "relative flex min-h-8 cursor-pointer items-center rounded-full px-3 text-sm font-medium",
+              "after:absolute after:inset-x-0 after:-top-1.5 after:-bottom-1.5 after:content-['']",
               "transition-colors duration-150 motion-reduce:transition-none",
               "outline-offset-2 has-focus-visible:outline-2 has-focus-visible:outline-on-dark",
               selected
