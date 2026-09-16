@@ -2,10 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import type { FooterContent } from "@/content/types";
+import { OptionSwitch } from "@/components/ui/OptionSwitch";
+import type { FooterContent, Locale, UiLabels } from "@/content/types";
+import { LOCALE_COOKIE, THEME_COOKIE, type Theme } from "@/lib/preferences";
 
 export type SiteFooterProps = {
   content: FooterContent;
+  ui: UiLabels;
+  locale: Locale;
+  theme: Theme;
   /** Show the footer CTA; only where its target exists on the page. */
   showCta?: boolean;
   /** The concept disclaimer belongs to the index page only. */
@@ -16,6 +21,9 @@ export type SiteFooterProps = {
 
 export function SiteFooter({
   content,
+  ui,
+  locale,
+  theme,
   showCta = false,
   showDisclaimer = false,
   showLinks = false,
@@ -28,8 +36,8 @@ export function SiteFooter({
             <div className="flex flex-col gap-4">
               <Link
                 href="/"
-                aria-label="Pillar Conversion System, vai alla home"
-                className="flex min-h-11 w-fit items-center rounded-md outline-offset-4 focus-visible:outline-2 focus-visible:outline-primary-foreground"
+                aria-label={ui.homeLink}
+                className="flex min-h-11 w-fit items-center rounded-md outline-offset-4 focus-visible:outline-2 focus-visible:outline-on-dark"
               >
                 <Image
                   src="/logo.svg"
@@ -40,7 +48,7 @@ export function SiteFooter({
                 />
               </Link>
               {showDisclaimer && (
-                <p className="max-w-md text-sm text-light-gray">{content.disclaimer}</p>
+                <p className="max-w-md text-sm text-on-dark-muted">{content.disclaimer}</p>
               )}
             </div>
 
@@ -58,13 +66,13 @@ export function SiteFooter({
               )}
 
               {showLinks && (
-                <nav aria-label="Sezioni del progetto">
+                <nav aria-label={ui.footerNav}>
                   <ul className="flex flex-col gap-2 md:items-end">
                     {content.links.map((link) => (
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="flex min-h-11 items-center rounded-md text-sm text-light-gray outline-offset-4 transition-colors duration-150 hover:text-primary-foreground focus-visible:outline-2 focus-visible:outline-primary-foreground active:text-light-gray motion-reduce:transition-none"
+                          className="flex min-h-11 items-center rounded-md text-sm text-on-dark-muted outline-offset-4 transition-colors duration-150 hover:text-on-dark focus-visible:outline-2 focus-visible:outline-on-dark active:text-on-dark-muted motion-reduce:transition-none"
                         >
                           {link.label}
                         </Link>
@@ -74,6 +82,29 @@ export function SiteFooter({
                 </nav>
               )}
             </div>
+          </div>
+
+          <div className="flex flex-col gap-6 border-t border-on-dark/15 pt-6 sm:flex-row sm:items-start sm:gap-10">
+            <OptionSwitch
+              label={ui.localeLabel}
+              name="locale"
+              cookieName={LOCALE_COOKIE}
+              value={locale}
+              options={[
+                { value: "it", label: ui.localeNames.it },
+                { value: "en", label: ui.localeNames.en },
+              ]}
+            />
+            <OptionSwitch
+              label={ui.themeLabel}
+              name="theme"
+              cookieName={THEME_COOKIE}
+              value={theme}
+              options={[
+                { value: "light", label: ui.themeNames.light },
+                { value: "dark", label: ui.themeNames.dark },
+              ]}
+            />
           </div>
         </div>
       </Container>

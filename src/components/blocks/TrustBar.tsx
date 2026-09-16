@@ -17,7 +17,7 @@ export function TrustBar({ content, showStats = true, id = "trust-bar" }: TrustB
         <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card px-6 py-8 md:flex-row md:items-center md:gap-10 md:px-10">
           <h2
             id={titleId}
-            className="h4 max-w-xs shrink-0 font-semibold text-balance text-muted-foreground"
+            className="h4 max-w-xs shrink-0 font-semibold text-pretty text-muted-foreground"
           >
             {content.title}
           </h2>

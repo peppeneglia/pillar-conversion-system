@@ -2,24 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import type { CtaConfig } from "@/content/types";
+import type { CtaConfig, UiLabels } from "@/content/types";
 import { cn } from "@/lib/cn";
 
 export type SiteHeaderProps = {
+  ui: UiLabels;
   /** Landing action; omitted where its target does not exist on the page. */
   cta?: CtaConfig;
   sticky?: boolean;
 };
 
-export function SiteHeader({ cta, sticky = false }: SiteHeaderProps) {
+export function SiteHeader({ ui, cta, sticky = false }: SiteHeaderProps) {
   return (
     <header className={cn("bg-background pt-3 pb-3 select-none", sticky && "sticky top-0 z-40")}>
       <Container>
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-(image:--gradient-surface-dark) px-4 py-3 shadow-lg md:px-6">
           <Link
             href="/"
-            aria-label="Pillar Conversion System, vai alla home"
-            className="flex min-h-11 items-center rounded-md outline-offset-4 focus-visible:outline-2 focus-visible:outline-primary-foreground"
+            aria-label={ui.homeLink}
+            className="flex min-h-11 items-center rounded-md outline-offset-4 focus-visible:outline-2 focus-visible:outline-on-dark"
           >
             <Image
               src="/logo.svg"

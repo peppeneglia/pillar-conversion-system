@@ -355,7 +355,7 @@ export function LeadForm({
           className="flex flex-col gap-6"
         >
           <div className="flex flex-col gap-2">
-            <h2 id={titleId} className={cn(titleClass, "font-bold text-balance")}>
+            <h2 id={titleId} className={cn(titleClass, "font-bold text-pretty")}>
               {content.title}
             </h2>
             <p className="text-muted-foreground">{content.subtitle}</p>

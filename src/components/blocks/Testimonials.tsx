@@ -16,7 +16,7 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
   return (
     <Section id={id} background="muted" aria-labelledby={titleId}>
       <Container className="flex flex-col gap-8 md:gap-12">
-        <h2 id={titleId} className="h2 font-bold text-balance">
+        <h2 id={titleId} className="h2 font-bold text-pretty">
           {title}
         </h2>
 
@@ -30,12 +30,12 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
                   className={cn(
                     "flex w-full flex-col justify-between gap-6 rounded-2xl p-6 md:p-8",
                     featured
-                      ? "bg-(image:--gradient-surface-dark) text-primary-foreground shadow-lg"
+                      ? "bg-(image:--gradient-surface-dark) text-on-dark shadow-lg"
                       : "border border-border bg-card",
                   )}
                 >
                   <blockquote>
-                    <p className={cn("text-balance", featured ? "h4 font-medium" : "body-large")}>
+                    <p className={cn("text-pretty", featured ? "h4 font-medium" : "body-large")}>
                       &quot;{testimonial.quote}&quot;
                     </p>
                   </blockquote>
@@ -49,8 +49,8 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
                           className={cn(
                             "flex size-11 items-center justify-center rounded-full label-medium font-semibold",
                             featured
-                              ? "bg-primary-foreground text-carbon-steel"
-                              : "bg-(image:--gradient-surface-dark) text-primary-foreground",
+                              ? "bg-on-dark text-carbon-steel"
+                              : "bg-(image:--gradient-surface-dark) text-on-dark",
                           )}
                         >
                           {getInitials(person.name)}
@@ -62,7 +62,7 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
                       {testimonial.people.map((person) => (
                         <p key={person.name} className="text-sm">
                           <span className="font-semibold">{person.name}</span>
-                          <span className={featured ? "text-light-gray" : "text-muted-foreground"}>
+                          <span className={featured ? "text-on-dark-muted" : "text-muted-foreground"}>
                             , {person.role}
                           </span>
                         </p>
@@ -70,7 +70,7 @@ export function Testimonials({ testimonials, title, id = "testimonianze" }: Test
                       <p
                         className={cn(
                           "text-sm font-medium",
-                          featured ? "text-light-gray" : "text-muted-foreground",
+                          featured ? "text-on-dark-muted" : "text-muted-foreground",
                         )}
                       >
                         {testimonial.company}

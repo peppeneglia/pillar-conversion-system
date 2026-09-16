@@ -31,7 +31,7 @@ export function Faq({ items, title, id = "faq" }: FaqProps) {
       <script type="application/ld+json">{toFaqPageJsonLd(items)}</script>
 
       <Container className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-16">
-        <h2 id={titleId} className="h2 font-bold text-balance">
+        <h2 id={titleId} className="h2 font-bold text-pretty">
           {title}
         </h2>
 
@@ -42,7 +42,7 @@ export function Faq({ items, title, id = "faq" }: FaqProps) {
               className="group overflow-hidden rounded-xl border border-border bg-card open:border-tropical-indigo/40 open:shadow-sm"
             >
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 px-5 py-4 font-medium transition-colors duration-150 -outline-offset-2 hover:bg-muted focus-visible:outline-2 focus-visible:outline-primary active:bg-border motion-reduce:transition-none md:px-6 md:py-5 [&::-webkit-details-marker]:hidden">
-                <span className="text-balance">{item.question}</span>
+                <span className="text-pretty">{item.question}</span>
                 <span
                   aria-hidden="true"
                   className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-foreground transition-transform duration-150 group-open:rotate-180 motion-reduce:transition-none"

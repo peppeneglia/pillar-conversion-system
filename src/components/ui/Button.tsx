@@ -57,16 +57,16 @@ const variantClasses: Record<ButtonVariant, string> = {
     "focus-visible:outline-primary data-[state=focus]:outline-primary",
   ),
   contrast: cn(
-    "bg-primary-foreground text-primary shadow-sm",
+    "bg-on-dark text-carbon-steel shadow-sm",
     "hover:bg-light-gray data-[state=hover]:bg-light-gray",
     "active:bg-medium-gray data-[state=active]:bg-medium-gray",
-    "focus-visible:outline-primary-foreground data-[state=focus]:outline-primary-foreground",
+    "focus-visible:outline-on-dark data-[state=focus]:outline-on-dark",
   ),
   ghost: cn(
-    "border border-primary-foreground/30 text-primary-foreground",
-    "hover:bg-primary-foreground/10 data-[state=hover]:bg-primary-foreground/10",
-    "active:bg-primary-foreground/20 data-[state=active]:bg-primary-foreground/20",
-    "focus-visible:outline-primary-foreground data-[state=focus]:outline-primary-foreground",
+    "border border-on-dark/30 text-on-dark",
+    "hover:bg-on-dark/10 data-[state=hover]:bg-on-dark/10",
+    "active:bg-on-dark/20 data-[state=active]:bg-on-dark/20",
+    "focus-visible:outline-on-dark data-[state=focus]:outline-on-dark",
   ),
 };
 

@@ -20,7 +20,7 @@ export type AudienceProps = {
 const surfaceClasses: Record<AudienceBackground, { body: string; bullet: string }> = {
   card: { body: "text-muted-foreground", bullet: "border-border bg-background" },
   background: { body: "text-muted-foreground", bullet: "border-border bg-card" },
-  accent: { body: "text-light-gray", bullet: "border-medium-gray/60 bg-primary-foreground/6" },
+  accent: { body: "text-on-dark-muted", bullet: "border-medium-gray/60 bg-on-dark/6" },
 };
 
 // Used for both the audience and the team sections of a stage.
@@ -34,7 +34,7 @@ export function Audience({ content, background = "card", id = "per-chi" }: Audie
     <Section id={id} background={background} aria-labelledby={titleId}>
       <Container className={cn("grid gap-8", hasBullets && "md:grid-cols-2 md:gap-16")}>
         <div className={cn("flex flex-col gap-4", !hasBullets && "max-w-[70ch]")}>
-          <h2 id={titleId} className="h2 font-bold text-balance">
+          <h2 id={titleId} className="h2 font-bold text-pretty">
             {content.title}
           </h2>
           <p className={cn("body-large", surface.body)}>{content.body}</p>

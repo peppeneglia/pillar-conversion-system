@@ -27,6 +27,10 @@
   --color-ring: #a1a1aa;
   --color-destructive: #ef4444;
 
+  /* Fixed colours for text on the dark brand surfaces, in both themes. */
+  --color-on-dark: #fafafa;
+  --color-on-dark-muted: #d4d4d8;
+
   /* Gradients */
   --gradient-text-hero: linear-gradient(208deg, #202328 49.62%, #9f51ce 65.32%, #fc899a 81.03%, #ffc1b5 97.21%);
   /*
@@ -49,6 +53,29 @@
 
 @theme inline {
   --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* The theme is a choice stored in a cookie, never the system setting. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-background: #0f1115;
+  --color-foreground: #f4f4f5;
+  --color-card: #171a20;
+  --color-primary: #f4f4f5;
+  --color-primary-foreground: #16181d;
+  --color-muted: #1f232b;
+  --color-muted-foreground: #a8adb8;
+  --color-border: #2c313a;
+  --color-input: #2c313a;
+  --color-ring: #6b7280;
+  --color-destructive: #f87171;
+
+  /* Lighter stops: on the dark surfaces these keep >= 6:1. */
+  --gradient-brand-accessible: linear-gradient(110deg, #ff9db0 0%, #c4a1ff 100%);
+  --gradient-text-hero-accessible: linear-gradient(208deg, #f4f4f5 42%, #c4a1ff 68%, #ff9db0 92%);
 }
 
 @layer base {

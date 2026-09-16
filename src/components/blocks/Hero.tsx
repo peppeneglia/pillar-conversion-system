@@ -29,7 +29,7 @@ export function Hero({ content, stats = [] }: HeroProps) {
             <span aria-hidden="true" className="size-2 rounded-full bg-(image:--gradient-brand)" />
             {eyebrow}
           </p>
-          <h1 id="hero-title" className="h1-huge mt-3 font-bold text-balance md:mt-4">
+          <h1 id="hero-title" className="h1-huge mt-3 font-bold text-pretty md:mt-4">
             {/* One sentence per line: never break mid-sentence when a full stop is available. */}
             <span className="block">{headline}</span>
             {headlineAccent && (
@@ -64,7 +64,7 @@ export function Hero({ content, stats = [] }: HeroProps) {
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-(image:--gradient-surface-dark) p-1 shadow-lg">
             {stats.map((stat) => (
               <div key={stat.label} className="flex flex-col-reverse gap-1 p-5 md:p-6">
-                <dt className="text-sm text-light-gray">{stat.label}</dt>
+                <dt className="text-sm text-on-dark-muted">{stat.label}</dt>
                 <dd className="h3 bg-(image:--gradient-brand) bg-clip-text font-bold text-transparent">
                   {stat.value}
                 </dd>

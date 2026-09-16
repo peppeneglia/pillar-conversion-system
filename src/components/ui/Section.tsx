@@ -12,7 +12,7 @@ const backgroundClasses: Record<SectionBackground, string> = {
   background: "bg-background",
   card: "bg-card",
   muted: "bg-muted",
-  accent: "bg-carbon-steel text-primary-foreground",
+  accent: "bg-carbon-steel text-on-dark",
 };
 
 export function Section({
