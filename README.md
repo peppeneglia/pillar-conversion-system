@@ -51,10 +51,10 @@ prenotare una demo.
 - **Form a step o breve.** Il form a step è il default; `?form=single` mostra
   la variante corta. La variante è risolta dal server, così il confronto tra le
   due può partire dallo stesso URL della campagna.
-- **Eventi di conversione first-party.** `page_view`, `cta_click`, `form_view`,
+- **Eventi di conversione.** `page_view`, `cta_click`, `form_view`,
   `form_start`, `form_step`, `form_submit` e `scroll_depth` sono definiti nel
-  codice con i parametri UTM della sessione e scritti in console. Nessuno script
-  di terze parti, nessun dato inviato da nessuna parte.
+  codice e inviati a PostHog senza cookie e senza autocapture: solo i sette
+  eventi definiti, con posizione del form, stadio, variante e UTM.
 - **Accessibilità come vincolo.** Contrasti conformi a WCAG AA, ogni elemento
   interattivo raggiungibile da tastiera con stati visibili e area di tocco di
   almeno 44 pixel. Un solo `h1` per pagina, landmark e label su ogni campo.

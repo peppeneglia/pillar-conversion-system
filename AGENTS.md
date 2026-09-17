@@ -6,7 +6,7 @@ Progetto personale non commissionato, a scopo di portfolio. Non affiliato a Pill
 - Tutte le pagine servite con `noindex, nofollow`
 - Nessuna foto dei testimonial: citazioni con nome e azienda, avatar con iniziali
 - Mobile-first: si scrive il mobile, si sale con i breakpoint
-- Nessuno script di terze parti, nessun font caricato da CDN esterna
+- Nessuno script di terze parti caricato da tag esterno, nessun font da CDN esterna. Unica eccezione: PostHog, incluso nel bundle tramite `posthog-js`, senza cookie e senza autocapture; riceve solo i sette eventi definiti in `src/lib/analytics.ts`
 - Base tipografica 16px, mai testo sotto 12px
 - Nessun dato inventato: numeri e citazioni solo se presenti nel contenuto fornito
 

@@ -1,9 +1,10 @@
 import type { LeadFormPosition, LeadFormVariant } from "@/components/blocks/LeadForm";
 import type { LeadFormFieldKey, Stage } from "@/content/types";
+import posthog from "posthog-js";
 import { sanitizeText } from "@/lib/validation";
 
-// First-party event layer: no third-party scripts, no network. Events are logged to
-// the console, ready to be forwarded to a real endpoint later.
+// Event layer: the events go to PostHog, initialised in src/instrumentation-client.ts.
+// The console log is only for development.
 
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const;
 export type UtmKey = (typeof UTM_KEYS)[number];
@@ -62,7 +63,8 @@ function writeSession(key: string, value: string): void {
 
 export function track<E extends AnalyticsEventName>(name: E, payload: AnalyticsEvents[E]): void {
   if (typeof window === "undefined") return;
-  console.info(`[analytics] ${name}`, payload);
+  if (process.env.NODE_ENV !== "production") console.info(`[analytics] ${name}`, payload);
+  if (posthog.__loaded) posthog.capture(name, payload);
 }
 
 function parseStoredUtm(raw: string): Utm | null {
